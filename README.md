@@ -4,7 +4,7 @@ A modern, responsive portfolio showcasing my expertise in Artificial Intelligenc
 
 ## 🌐 Live Portfolio
 
-Portfolio Website: [Add Deployed URL Here]
+Portfolio Website: [\[Add Deployed URL Here\]](https://chandni-ai-portfolio.vercel.app)
 
 ## 👩‍💻 About Me
 

@@ -4,8 +4,7 @@ A modern, responsive portfolio showcasing my expertise in Artificial Intelligenc
 
 ## 🌐 Live Portfolio
 
-Portfolio Website: [\[Add Deployed URL Here\]](https://chandni-ai-portfolio.vercel.app)
-
+Portfolio Website: https://chandni-ai-portfolio.vercel.app
 ## 👩‍💻 About Me
 
 AI Engineer and Machine Learning Engineer passionate about building intelligent systems that solve real-world business problems.
@@ -186,8 +185,7 @@ https://github.com/mlexpnew
 
 ### Portfolio
 
-[Add Portfolio URL]
-
+Portfolio Website: https://chandni-ai-portfolio.vercel.app
 ---
 
 ## ⭐ Highlights

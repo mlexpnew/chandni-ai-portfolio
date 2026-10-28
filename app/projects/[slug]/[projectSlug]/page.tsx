@@ -42,7 +42,7 @@ const blueprintBySlug: Record<string, ProjectBlueprint> = {
     learnings: ["LangGraph loops", "Grounding and verification", "Domain retrieval"],
   },
   "crewai-content-workflow": {
-    impact: ["Reviewed drafts", "Live public demo"],
+    impact: ["Reviewed drafts", "Deployable Streamlit app"],
     architecture: ["Topic → Researcher → Writer → Evaluator → Final Content"],
     screenshots: ["Streamlit App", "Agent Log", "Final Output"],
     challenges: ["Agent hand-offs", "Evaluation criteria"],

@@ -10,6 +10,8 @@ export type Project = {
   github: string;
   highlights: string[];
   outcome: string;
+  /** Optional real screenshot path (e.g. "/covers/architectai.png"). Replaces the illustrated cover. */
+  cover?: string;
 };
 
 export type ProjectGroup = {

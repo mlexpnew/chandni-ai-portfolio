@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Geist, Geist_Mono } from "next/font/google";
+import { Barlow_Condensed, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const bebas = Bebas_Neue({
+// Condensed face is used only for project card titles
+const barlow = Barlow_Condensed({
   variable: "--font-display",
-  weight: "400",
+  weight: ["600", "700"],
   subsets: ["latin"],
 });
 
@@ -37,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${bebas.variable} h-full antialiased`}
+      className={`${inter.variable} ${geistMono.variable} ${barlow.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

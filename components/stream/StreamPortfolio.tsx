@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { PointerEvent as RPointerEvent, ReactNode } from "react";
 import AgentSphere from "./AgentSphere";
+import Cover from "./Covers";
+import SkillChip from "./SkillChip";
 import type { Project, ProjectGroup } from "@/data/projects";
 
 type Cert = { title: string; issuer: string; image: string; link: string };
@@ -48,13 +50,12 @@ const EXPERIENCE = [
   { role: "Software Engineer Intern", org: "Inferigence Quotient LLP", when: "Jul – Dec 2024", note: "Python applications and automated workflows; cut processing time by 25%." },
 ];
 
-const SKILLS = [
-  ["Agents & LLMs", "CrewAI · LangChain · LangGraph · OpenAI · Gemini · Groq · Ollama"],
-  ["Retrieval", "RAG · Embeddings · FAISS · ChromaDB · Pinecone · Hugging Face"],
-  ["Backend", "Python · FastAPI · Flask · Pydantic · Docker · GitHub Actions · Pytest"],
-  ["Data", "SQL · PostgreSQL · MongoDB · Pandas · NumPy · Power BI · Tableau"],
-  ["ML", "scikit-learn · XGBoost · TensorFlow · PyTorch · NLP"],
-  ["Automation", "n8n · Streamlit · Gradio"],
+const SKILL_GROUPS: { title: string; items: string[] }[] = [
+  { title: "Languages & backend", items: ["Python", "FastAPI", "Flask", "Pydantic", "SQL"] },
+  { title: "Agents & LLMs", items: ["LangChain", "LangGraph", "CrewAI", "Gemini", "Groq", "Ollama", "Hugging Face"] },
+  { title: "Retrieval & data stores", items: ["FAISS", "ChromaDB", "Pinecone", "PostgreSQL", "MongoDB"] },
+  { title: "ML & data", items: ["Pandas", "NumPy", "scikit-learn", "PyTorch", "TensorFlow", "Power BI", "Tableau"] },
+  { title: "Delivery & automation", items: ["Docker", "GitHub Actions", "Git", "AWS", "Pytest", "n8n", "Streamlit"] },
 ];
 
 const POSTERS: Record<string, [string, string]> = {
@@ -311,11 +312,17 @@ export default function StreamPortfolio({
             <section id="skills" className="sp-skills">
               <h2>Cast &amp; crew</h2>
               <p className="sp-skills-sub">The tools behind every episode.</p>
-              <div className="sp-skill-grid">
-                {SKILLS.map(([k, v]) => (
-                  <div key={k}>
-                    <h4>{k}</h4>
-                    <p>{v}</p>
+              <div className="sp-skill-groups">
+                {SKILL_GROUPS.map((g) => (
+                  <div key={g.title} className="sp-skill-group">
+                    <h4>{g.title}</h4>
+                    <ul className="sp-chips">
+                      {g.items.map((name) => (
+                        <li key={name}>
+                          <SkillChip name={name} />
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 ))}
               </div>
@@ -402,38 +409,13 @@ function useTilt() {
   return { ref, onPointerMove: onMove, onPointerLeave: onLeave };
 }
 
-function PosterArt({ seed, colors }: { seed: number; colors: [string, string] }) {
-  const shapes = Array.from({ length: 6 }, (_, i) => {
-    const a = (seed * 37 + i * 61) % 100;
-    const b = (seed * 53 + i * 29) % 100;
-    return { cx: a, cy: b, r: 8 + ((seed + i * 7) % 18) };
-  });
-  return (
-    <svg className="sp-art" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs>
-        <linearGradient id={`g${seed}${colors[1]}`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor={colors[0]} />
-          <stop offset="1" stopColor={colors[1]} />
-        </linearGradient>
-      </defs>
-      <rect width="100" height="60" fill={`url(#g${seed}${colors[1]})`} />
-      {shapes.map((s, i) => (
-        <circle key={i} cx={s.cx} cy={s.cy * 0.6} r={s.r} fill="none" stroke="#fff" strokeOpacity={0.12 + (i % 3) * 0.06} strokeWidth="0.6" />
-      ))}
-      {shapes.slice(0, 4).map((s, i) => (
-        <line key={`l${i}`} x1={s.cx} y1={s.cy * 0.6} x2={shapes[i + 1].cx} y2={shapes[i + 1].cy * 0.6} stroke="#fff" strokeOpacity="0.18" strokeWidth="0.4" />
-      ))}
-    </svg>
-  );
-}
-
-function PosterCard({ project, group, index, onOpen }: { project: Project; group: ProjectGroup; index: number; onOpen: () => void }) {
+function PosterCard({ project, group, onOpen }: { project: Project; group: ProjectGroup; index: number; onOpen: () => void }) {
   const tilt = useTilt();
   const colors = POSTERS[group.slug] ?? ["#1b1b2f", "#7C5CFF"];
   return (
     <button className="sp-card" onClick={onOpen} {...tilt} aria-label={`Open ${project.title}`}>
       <div className="sp-card-in">
-        <PosterArt seed={index + project.title.length} colors={colors} />
+        <Cover slug={project.slug} colors={colors} image={project.cover} title={project.title} />
         <span className="sp-glare" />
         <span className="sp-card-title">{project.title}</span>
         <div className="sp-card-more">
@@ -456,10 +438,14 @@ function RankCard({ project, group, rank, onOpen }: { project: Project; group: P
       <span className="sp-rank-n" aria-hidden="true">{rank}</span>
       <button className="sp-card tall" onClick={onOpen} {...tilt} aria-label={`Open ${project.title}`}>
         <div className="sp-card-in">
-          <PosterArt seed={rank * 9} colors={POSTERS[group.slug]} />
+          <Cover slug={project.slug} colors={POSTERS[group.slug]} image={project.cover} title={project.title} />
           <span className="sp-glare" />
-          {project.slug === "reglens" && <span className="sp-flag">New episodes soon</span>}
-          {project.liveDemo && <span className="sp-flag live">Live demo</span>}
+          {(project.slug === "reglens" || project.liveDemo) && (
+            <span className="sp-flags">
+              {project.slug === "reglens" && <span className="sp-flag">In build</span>}
+              {project.liveDemo && <span className="sp-flag live">Live demo</span>}
+            </span>
+          )}
           <span className="sp-card-title big">{project.title}</span>
           <div className="sp-card-more">
             <p>{project.description}</p>
@@ -488,7 +474,7 @@ function Modal({ sel, onClose }: { sel: NonNullable<Selected>; onClose: () => vo
     <div className="sp-modal-bg" onClick={onClose}>
       <div className="sp-modal" role="dialog" aria-modal="true" aria-label={project.title} onClick={(e) => e.stopPropagation()}>
         <div className="sp-modal-hero">
-          <PosterArt seed={project.title.length * 3} colors={POSTERS[group.slug] ?? ["#1b1b2f", "#7C5CFF"]} />
+          <Cover slug={project.slug} colors={POSTERS[group.slug] ?? ["#1b1b2f", "#7C5CFF"]} image={project.cover} title={project.title} />
           <div className="sp-modal-fade" />
           <h2>{project.title}</h2>
           <button ref={closeRef} className="sp-close" onClick={onClose} aria-label="Close">✕</button>

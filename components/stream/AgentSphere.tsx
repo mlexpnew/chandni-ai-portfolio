@@ -159,7 +159,7 @@ export default function AgentSphere({ className = "" }: { className?: string }) 
       ctx!.ellipse(cx, cy, RX, R * 0.42, -0.25, 0, Math.PI * 2);
       ctx!.stroke();
       ctx!.globalAlpha = 1;
-      ctx!.font = "600 12px var(--font-geist-sans), system-ui, sans-serif";
+      ctx!.font = "600 13px system-ui, -apple-system, \"Segoe UI\", sans-serif";
       ORBITERS.forEach((name, i) => {
         const ang = (time * (reduce ? 0 : 0.006)) + (i / ORBITERS.length) * Math.PI * 2;
         const ex = Math.cos(ang) * RX;

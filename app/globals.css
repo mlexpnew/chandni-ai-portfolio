@@ -135,7 +135,7 @@ html { background: var(--sp-bg); color-scheme: dark; }
 .sp-cover-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 55%; background: linear-gradient(0deg, rgba(8,8,15,.9) 0%, rgba(8,8,15,.55) 55%, transparent); pointer-events: none; }
 
 /* ---- 3D card ---- */
-.sp-card { --rx: 0deg; --ry: 0deg; --gx: 50%; --gy: 50%; position: relative; width: clamp(240px, 22vw, 320px); aspect-ratio: 16/9; border: 0; padding: 0; background: none; cursor: pointer; perspective: 800px; text-align: left; z-index: 1; transition: z-index 0s .3s; }
+.sp-card { display: block; --rx: 0deg; --ry: 0deg; --gx: 50%; --gy: 50%; position: relative; width: clamp(240px, 22vw, 320px); aspect-ratio: 16/9; border: 0; padding: 0; background: none; cursor: pointer; perspective: 800px; text-align: left; z-index: 1; transition: z-index 0s .3s; }
 .sp-card:hover, .sp-card:focus-visible { z-index: 10; transition: z-index 0s; }
 .sp-card-in { position: absolute; inset: 0; border-radius: 8px; overflow: hidden; transform: rotateX(var(--rx)) rotateY(var(--ry)) scale(1); transform-style: preserve-3d; transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; background: var(--sp-surface); box-shadow: 0 6px 18px -8px #000; }
 .sp-card:hover .sp-card-in, .sp-card:focus-visible .sp-card-in { transform: rotateX(var(--rx)) rotateY(var(--ry)) scale(1.1) translateY(-4%); box-shadow: 0 30px 60px -18px #000, 0 0 0 1px rgba(255,255,255,.12); transition: transform .12s ease-out, box-shadow .35s; }
@@ -205,6 +205,21 @@ html { background: var(--sp-bg); color-scheme: dark; }
 .sp-ep h4 { margin: 6px 0 2px; font-size: 18px; font-weight: 700; }
 .sp-ep-org { font-size: var(--fs-meta); color: #D8D5E8; margin-bottom: 8px; }
 .sp-ep p { margin: 0; font-size: var(--fs-meta); line-height: 1.5; color: var(--sp-muted); }
+
+/* experience as episodes */
+.sp-episode { width: clamp(270px, 24vw, 340px); display: flex; flex-direction: column; gap: 12px; text-decoration: none; border-radius: 8px; transition: transform .25s; }
+.sp-episode:hover, .sp-episode:focus-visible { transform: translateY(-4px); }
+.sp-episode-art { position: relative; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden; background: #000; box-shadow: 0 10px 24px -12px #000; }
+.sp-episode-art img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s; }
+.sp-episode:hover .sp-episode-art img { transform: scale(1.06); }
+.sp-episode:hover .sp-play-center, .sp-episode:focus-visible .sp-play-center { opacity: 1; transform: scale(1) translateZ(0); }
+.sp-progress { position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: rgba(255,255,255,.25); }
+.sp-progress i { display: block; height: 100%; background: var(--badge); }
+.sp-episode-body { padding: 0 2px; }
+.sp-ep-num { font: 800 16px/1 var(--font-ui); color: #9C84FF; margin-right: 2px; }
+.sp-episode h4 { margin: 6px 0 2px; font-size: 18px; font-weight: 700; }
+.sp-episode p { margin: 0; font-size: var(--fs-meta); line-height: 1.5; color: var(--sp-muted); }
+.sp-case-card { display: block; }
 
 /* certs, docs, cases */
 .sp-cert, .sp-doc, .sp-case { width: clamp(250px, 22vw, 320px); text-decoration: none; transition: transform .25s; }

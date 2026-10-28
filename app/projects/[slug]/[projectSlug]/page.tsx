@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projectGroups } from "@/data/projects";
 
+const isReal = (url: string) => Boolean(url) && !url.includes("your-");
+
 type Props = {
   params: Promise<{
     slug: string;
@@ -18,6 +20,41 @@ type ProjectBlueprint = {
 };
 
 const blueprintBySlug: Record<string, ProjectBlueprint> = {
+  architectai: {
+    impact: ["Backend project from one requirements file", "Self-reviewing output", "60+ test modules"],
+    architecture: ["Requirements → Planner → Generators → Reviewer → Quality Gate → Self-heal → Repository"],
+    screenshots: ["CLI Run", "Generated Project Tree", "Review Report"],
+    challenges: ["Keeping agents consistent", "Detecting broken generations", "Replanning on failure"],
+    learnings: ["Agent orchestration", "Quality gates for LLM output", "Caching long workflows"],
+  },
+  supportpilot: {
+    impact: ["Clean deduplicated ticket stream", "Secured triage API", "Documented operations"],
+    architecture: ["JSONL Tickets → Validate → Dedup → Redact PII → Triage Model → FastAPI /triage"],
+    screenshots: ["OpenAPI Docs", "Metrics Endpoint", "CI Pipeline"],
+    challenges: ["Rate limiting per key", "Image size under 400 MB", "Safe key rotation"],
+    learnings: ["Production API design", "Runbooks and on-call", "Team code review"],
+  },
+  reglens: {
+    impact: ["Cited regulatory answers", "Faster compliance research"],
+    architecture: ["Question → Plan Sub-questions → Retrieve Circulars → Draft → Verify → Cited Answer"],
+    screenshots: ["Question Input", "Cited Answer", "Source Panel"],
+    challenges: ["Dense legal text", "Citation accuracy", "Versioned regulations"],
+    learnings: ["LangGraph loops", "Grounding and verification", "Domain retrieval"],
+  },
+  "crewai-content-workflow": {
+    impact: ["Reviewed drafts", "Live public demo"],
+    architecture: ["Topic → Researcher → Writer → Evaluator → Final Content"],
+    screenshots: ["Streamlit App", "Agent Log", "Final Output"],
+    challenges: ["Agent hand-offs", "Evaluation criteria"],
+    learnings: ["CrewAI roles", "Gemini prompting", "Streamlit deploys"],
+  },
+  "n8n-ugc-generator": {
+    impact: ["Posts for 3 platforms", "No manual copywriting"],
+    architecture: ["Reviews (CSV/API/Sheets) → Gemini Summary → Templates → X / LinkedIn / Instagram"],
+    screenshots: ["n8n Workflow", "Templates", "Generated Posts"],
+    challenges: ["Platform tone and length", "Messy review data"],
+    learnings: ["n8n automation", "Template design"],
+  },
   "rag-chatbot": {
     impact: ["Faster document Q&A", "Grounded answers", "Reusable RAG pipeline"],
     architecture: ["Upload Docs → Chunking → Embeddings → Vector Search → LLM Answer"],
@@ -339,6 +376,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 PROJECT LINKS
               </p>
               <div className="space-y-3">
+                {isReal(project.liveDemo) && (
                 <a
                   href={project.liveDemo}
                   target="_blank"
@@ -347,6 +385,8 @@ export default async function ProjectDetailPage({ params }: Props) {
                 >
                   Open Live Demo
                 </a>
+                )}
+                {isReal(project.dashboard) && (
                 <a
                   href={project.dashboard}
                   target="_blank"
@@ -355,6 +395,8 @@ export default async function ProjectDetailPage({ params }: Props) {
                 >
                   Open Live Dashboard
                 </a>
+                )}
+                {isReal(project.github) && (
                 <a
                   href={project.github}
                   target="_blank"
@@ -363,6 +405,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 >
                   View GitHub
                 </a>
+                )}
               </div>
             </div>
 

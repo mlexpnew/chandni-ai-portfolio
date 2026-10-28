@@ -43,11 +43,11 @@ const PROFILES: { key: ProfileKey; label: string; hue: string; line: string; tag
 ];
 
 const EXPERIENCE = [
-  { role: "Agentic AI Engineer", org: "Zetheta Algorithms", when: "Jun 2026 – Present", note: "Building multi-agent LLM workflows for fintech research and automation.", now: true },
-  { role: "AI Research Intern", org: "CodingJr", when: "Jun – Aug 2025", note: "Generative AI and NLP features for education products; trained and evaluated ML models." },
-  { role: "Data Analyst Intern", org: "Unified Mentor", when: "Feb – May 2025", note: "Cleaned large datasets and built Tableau and Excel dashboards for business reporting." },
-  { role: "Machine Learning Intern", org: "MyDailyWork", when: "Dec 2024 – Feb 2025", note: "Predictive models with scikit-learn, feature engineering and model evaluation." },
-  { role: "Software Engineer Intern", org: "Inferigence Quotient LLP", when: "Jul – Dec 2024", note: "Python applications and automated workflows; cut processing time by 25%." },
+  { role: "Agentic AI Engineer", org: "Zetheta Algorithms", img: "/thumbs/exp-zetheta.webp", when: "Jun 2026 – Present", note: "Building multi-agent LLM workflows for fintech research and automation.", now: true },
+  { role: "AI Research Intern", org: "CodingJr", img: "/thumbs/exp-codingjr.webp", when: "Jun – Aug 2025", note: "Generative AI and NLP features for education products; trained and evaluated ML models." },
+  { role: "Data Analyst Intern", org: "Unified Mentor", img: "/thumbs/exp-unified-mentor.webp", when: "Feb – May 2025", note: "Cleaned large datasets and built Tableau and Excel dashboards for business reporting." },
+  { role: "Machine Learning Intern", org: "MyDailyWork", img: "/thumbs/exp-mydailywork.webp", when: "Dec 2024 – Feb 2025", note: "Predictive models with scikit-learn, feature engineering and model evaluation." },
+  { role: "Software Engineer Intern", org: "Inferigence Quotient LLP", img: "/thumbs/exp-inferigence.webp", when: "Jul – Dec 2024", note: "Python applications and automated workflows; cut processing time by 25%." },
 ];
 
 const SKILL_GROUPS: { title: string; items: string[] }[] = [
@@ -151,10 +151,16 @@ export default function StreamPortfolio({
   rows.experience = (
     <Row key="experience" title="The journey so far" sub="Experience">
       {EXPERIENCE.map((x, i) => (
-        <div key={x.org} className="sp-ep">
-          <span className="sp-ep-n">E{EXPERIENCE.length - i}</span>
-          <div className="sp-ep-body">
+        <a key={x.org} className="sp-episode" href="https://www.linkedin.com/in/chandni-pradhan-67aa91324/" target="_blank" rel="noreferrer" aria-label={`${x.role} at ${x.org}, view on LinkedIn`}>
+          <div className="sp-episode-art">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={x.img} alt="" loading="lazy" />
+            <span className="sp-play-center" aria-hidden="true"><PlayIcon /></span>
+            <span className="sp-progress" aria-hidden="true"><i style={{ width: x.now ? "62%" : "100%" }} /></span>
+          </div>
+          <div className="sp-episode-body">
             <div className="sp-ep-when">
+              <b className="sp-ep-num">E{EXPERIENCE.length - i}</b>
               {x.when}
               {x.now && <b className="sp-live">Now streaming</b>}
             </div>
@@ -162,7 +168,7 @@ export default function StreamPortfolio({
             <div className="sp-ep-org">{x.org}</div>
             <p>{x.note}</p>
           </div>
-        </div>
+        </a>
       ))}
     </Row>
   );
@@ -201,10 +207,20 @@ export default function StreamPortfolio({
   rows.cases = (
     <Row key="cases" title="Industry case studies" sub="Self-study breakdowns of public AI systems" href="/case-studies">
       {caseStudies.map((c) => (
-        <Link key={c.slug} href="/case-studies" className="sp-case">
-          <span className="sp-case-co">{c.company}</span>
-          <h4>{c.title}</h4>
-          <span className="sp-case-cat">{c.category}</span>
+        <Link key={c.slug} href="/case-studies" className="sp-card has-art sp-case-card" aria-label={`${c.company}: ${c.title}. Open case studies`}>
+          <div className="sp-card-in">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="sp-cover-img" src={`/thumbs/${c.slug}.webp`} alt="" loading="lazy" />
+            <span className="sp-play-center" aria-hidden="true"><PlayIcon /></span>
+            <div className="sp-card-more">
+              <div className="sp-info-row">
+                <span className="sp-play-btn" aria-hidden="true"><PlayIcon /></span>
+                <strong className="sp-info-title">{c.company}</strong>
+              </div>
+              <p>{c.title}</p>
+              <div className="sp-card-tags"><span>{c.category}</span></div>
+            </div>
+          </div>
         </Link>
       ))}
     </Row>

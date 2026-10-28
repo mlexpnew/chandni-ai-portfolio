@@ -362,7 +362,7 @@ export default function Cover({
           )}
         </svg>
       )}
-      <span className="sp-cover-fade" />
+      {!image && <span className="sp-cover-fade" />}
     </div>
   );
 }

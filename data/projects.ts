@@ -12,6 +12,8 @@ export type Project = {
   outcome: string;
   /** Optional real screenshot path (e.g. "/covers/architectai.png"). Replaces the illustrated cover. */
   cover?: string;
+  /** Optional 2:3 poster used on the Top 5 row. */
+  poster?: string;
 };
 
 export type ProjectGroup = {
@@ -39,7 +41,8 @@ export const projectGroups: ProjectGroup[] = [
         github: "https://github.com/mlexpnew/ArchitectAI-Autonomous-Tech-Lead",
         highlights: ["Planner, reviewer and self-healing agents", "Entity and relationship extraction", "Parallel execution with workflow caching", "Plugin system and 60+ test modules"],
         outcome: "Generates complete backend projects from a requirements file through one CLI command.",
-        cover: "/covers/architectai.webp",
+        cover: "/thumbs/architectai.webp",
+        poster: "/posters/architectai.webp",
       },
       {
         slug: "supportpilot",
@@ -53,7 +56,8 @@ export const projectGroups: ProjectGroup[] = [
         github: "https://github.com/mlexpnew/supportpilot-ingestion",
         highlights: ["Streaming ingestion with validation and dedup", "API keys with 60 req/min rate limit", "Docker image under 400 MB", "CI, deployment guide and on-call runbook"],
         outcome: "A production-shaped ML service built and documented as a team.",
-        cover: "/covers/supportpilot.webp",
+        cover: "/thumbs/supportpilot.webp",
+        poster: "/posters/supportpilot.webp",
       },
       {
         slug: "reglens",
@@ -67,6 +71,8 @@ export const projectGroups: ProjectGroup[] = [
         github: "https://github.com/mlexpnew",
         highlights: ["Agentic plan, retrieve, verify loop", "Citations on every claim", "Built for fintech compliance teams"],
         outcome: "Currently in build as a flagship agentic project.",
+        cover: "/thumbs/reglens.webp",
+        poster: "/posters/reglens.webp",
       },
       {
         slug: "crewai-content-workflow",
@@ -80,7 +86,8 @@ export const projectGroups: ProjectGroup[] = [
         github: "https://github.com/mlexpnew/AI-Agent-Workflow-with-CrewAI-Gemini",
         highlights: ["Researcher, Writer, Evaluator agents", "Shared context and memory", "Built for Streamlit Cloud deployment"],
         outcome: "A working multi-agent app anyone can try in the browser.",
-        cover: "/covers/crewai-content-workflow.webp",
+        cover: "/thumbs/crewai-content-workflow.webp",
+        poster: "/posters/crewai-content-workflow.webp",
       },
       {
         slug: "n8n-ugc-generator",
@@ -94,6 +101,8 @@ export const projectGroups: ProjectGroup[] = [
         github: "https://github.com/mlexpnew-lab/n8n-auto-ugc-generator",
         highlights: ["Multi-source review ingestion", "LLM summarization", "Platform-specific post templates"],
         outcome: "Turns raw feedback into marketing content with no manual writing.",
+        cover: "/thumbs/n8n-ugc-generator.webp",
+        poster: "/posters/n8n-ugc-generator.webp",
       },
     ],
   },
@@ -122,7 +131,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Improved knowledge retrieval speed and created a practical assistant for document-based Q&A.",
-        cover: "/covers/rag-chatbot.webp",
+        cover: "/thumbs/rag-chatbot.webp",
       },
       {
         slug: "ai-resume-assistant",
@@ -144,6 +153,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Helped structure resume feedback into a practical, recruiter-friendly workflow.",
+        cover: "/thumbs/ai-resume-assistant.webp",
       },
       {
         slug: "document-qa-bot",
@@ -165,6 +175,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Created a useful assistant for document-heavy workflows and internal knowledge access.",
+        cover: "/thumbs/document-qa-bot.webp",
       },
       {
         slug: "meeting-notes-generator",
@@ -186,6 +197,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Reduced manual note-taking effort and made meetings easier to review later.",
+        cover: "/thumbs/meeting-notes-generator.webp",
       },
     ],
   },
@@ -214,6 +226,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Produced a practical pricing recommendation model for real estate-style listings.",
+        cover: "/thumbs/airbnb-pricing-model.webp",
       },
       {
         slug: "customer-churn-predictor",
@@ -235,6 +248,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Helped prioritize retention efforts by identifying high-risk customer segments.",
+        cover: "/thumbs/customer-churn-predictor.webp",
       },
       {
         slug: "loan-approval-predictor",
@@ -256,6 +270,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Created a useful decision-support model for finance-style application screening.",
+        cover: "/thumbs/loan-approval-predictor.webp",
       },
       {
         slug: "house-price-predictor",
@@ -277,6 +292,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Provided a pricing estimator useful for analysis and model comparison.",
+        cover: "/thumbs/house-price-predictor.webp",
       },
     ],
   },
@@ -304,6 +320,7 @@ export const projectGroups: ProjectGroup[] = [
           "Reporting workflow",
         ],
         outcome: "Turned raw search data into actionable product insights.",
+        cover: "/thumbs/google-search-quality-analysis.webp",
       },
       {
         slug: "sales-dashboard",
@@ -325,6 +342,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Helped create a clearer view of sales performance and business trends.",
+        cover: "/thumbs/sales-dashboard.webp",
       },
       {
         slug: "revenue-insights-report",
@@ -346,6 +364,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Made business reporting easier to read and more decision-focused.",
+        cover: "/thumbs/revenue-insights-report.webp",
       },
       {
         slug: "ecommerce-analytics",
@@ -367,6 +386,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Enabled deeper understanding of ecommerce sales and customer journeys.",
+        cover: "/thumbs/ecommerce-analytics.webp",
       },
     ],
   },
@@ -394,6 +414,7 @@ export const projectGroups: ProjectGroup[] = [
           "Workflow automation",
         ],
         outcome: "Reduced manual effort in early candidate filtering.",
+        cover: "/thumbs/resume-screening-tool.webp",
       },
       {
         slug: "lead-email-bot",
@@ -415,6 +436,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Improved follow-up consistency and saved manual outreach time.",
+        cover: "/thumbs/lead-email-bot.webp",
       },
       {
         slug: "invoice-parser",
@@ -436,6 +458,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Reduced manual invoice processing and improved data consistency.",
+        cover: "/thumbs/invoice-parser.webp",
       },
       {
         slug: "report-generator",
@@ -457,6 +480,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Simplified repetitive reporting and reduced manual work.",
+        cover: "/thumbs/report-generator.webp",
       },
     ],
   },
@@ -485,6 +509,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Improved visibility of internship tasks and deliverables.",
+        cover: "/thumbs/internship-project-tracker.webp",
       },
       {
         slug: "internship-analytics-dashboard",
@@ -506,6 +531,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Made internship reporting clearer and easier to review.",
+        cover: "/thumbs/internship-analytics-dashboard.webp",
       },
       {
         slug: "internship-task-automation",
@@ -526,6 +552,7 @@ export const projectGroups: ProjectGroup[] = [
           "API integration",
         ],
         outcome: "Saved time on repetitive internship tasks.",
+        cover: "/thumbs/internship-task-automation.webp",
       },
       {
         slug: "internship-data-cleaning-project",
@@ -547,6 +574,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Improved dataset quality for later analysis and reporting.",
+        cover: "/thumbs/internship-data-cleaning-project.webp",
       },
     ],
   },

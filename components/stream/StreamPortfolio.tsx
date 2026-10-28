@@ -151,56 +151,55 @@ export default function StreamPortfolio({
   rows.experience = (
     <Row key="experience" title="The journey so far" sub="Experience">
       {EXPERIENCE.map((x, i) => (
-        <a key={x.org} className="sp-episode" href="https://www.linkedin.com/in/chandni-pradhan-67aa91324/" target="_blank" rel="noreferrer" aria-label={`${x.role} at ${x.org}, view on LinkedIn`}>
-          <div className="sp-episode-art">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={x.img} alt="" loading="lazy" />
-            <span className="sp-play-center" aria-hidden="true"><PlayIcon /></span>
-            <span className="sp-progress" aria-hidden="true"><i style={{ width: x.now ? "62%" : "100%" }} /></span>
-          </div>
-          <div className="sp-episode-body">
-            <div className="sp-ep-when">
+        <MediaCard
+          key={x.org}
+          href="https://www.linkedin.com/in/chandni-pradhan-67aa91324/"
+          label={`${x.role} at ${x.org}, view on LinkedIn`}
+          img={x.img}
+          progress={x.now ? 62 : 100}
+          eyebrow={
+            <>
               <b className="sp-ep-num">E{EXPERIENCE.length - i}</b>
-              {x.when}
+              <span>{x.when}</span>
               {x.now && <b className="sp-live">Now streaming</b>}
-            </div>
-            <h4>{x.role}</h4>
-            <div className="sp-ep-org">{x.org}</div>
-            <p>{x.note}</p>
-          </div>
-        </a>
+            </>
+          }
+          title={x.role}
+          meta={x.org}
+          desc={x.note}
+        />
       ))}
     </Row>
   );
   rows.certs = (
     <Row key="certs" title="Certified" sub="Credentials">
       {certifications.map((c) => (
-        <div key={c.title} className="sp-cert">
-          <div className="sp-cert-img">
-            {c.image ? (
-              <Image src={c.image} alt={`${c.title} certificate`} fill sizes="320px" style={{ objectFit: "cover" }} />
-            ) : (
-              <div className="sp-cert-art" aria-hidden="true">
-                <span className="sp-cert-issuer">{c.issuer}</span>
-                <span className="sp-cert-name">Certificate of completion</span>
-                <span className="sp-cert-seal">✓</span>
-              </div>
-            )}
-          </div>
-          <h4>{c.title}</h4>
-          <span>{c.issuer}</span>
-        </div>
+        <MediaCard
+          key={c.title}
+          img={c.image || CERT_ART[c.issuer]}
+          eyebrow={<span className="sp-verified">✓ Completed</span>}
+          title={c.title}
+          meta={c.issuer}
+          href={real(c.link) ? c.link : undefined}
+          label={real(c.link) ? `Verify ${c.title}` : undefined}
+          cta={real(c.link) ? "Verify certificate" : undefined}
+        />
       ))}
     </Row>
   );
   rows.writing = (
     <Row key="writing" title="Technical write-ups" sub="Documentaries">
-      {publications.map((x) => (
-        <a key={x.title} className="sp-doc" href={x.link} target="_blank" rel="noreferrer">
-          <h4>{x.title}</h4>
-          <p>{x.description}</p>
-          <span>Read on GitHub</span>
-        </a>
+      {publications.map((x, i) => (
+        <MediaCard
+          key={x.title}
+          href={x.link}
+          label={`${x.title}, read on GitHub`}
+          img={DOC_ART[i]}
+          eyebrow={<span>System design write-up</span>}
+          title={x.title}
+          desc={x.description}
+          cta="Read on GitHub"
+        />
       ))}
     </Row>
   );
@@ -380,6 +379,63 @@ export default function StreamPortfolio({
 }
 
 /* ---------- rows & cards ---------- */
+
+const real = (u?: string) => Boolean(u) && !u!.includes("your-");
+const CERT_ART: Record<string, string> = {
+  Google: "/thumbs/cert-google-data-analytics.webp",
+  Coursera: "/thumbs/cert-ml-specialization.webp",
+  "DeepLearning.AI": "/thumbs/cert-genai-llm.webp",
+};
+const DOC_ART = ["/thumbs/doc-nexbank.webp", "/thumbs/doc-workbridge.webp", "/thumbs/doc-financial-research.webp"];
+
+function MediaCard({
+  href,
+  label,
+  img,
+  eyebrow,
+  title,
+  meta,
+  desc,
+  cta,
+  progress,
+}: {
+  href?: string;
+  label?: string;
+  img: string;
+  eyebrow?: ReactNode;
+  title: string;
+  meta?: string;
+  desc?: string;
+  cta?: string;
+  progress?: number;
+}) {
+  const body = (
+    <>
+      <div className="sp-media-art">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={img} alt="" loading="lazy" />
+        {href && <span className="sp-play-center" aria-hidden="true"><PlayIcon /></span>}
+        {progress !== undefined && (
+          <span className="sp-progress" aria-hidden="true"><i style={{ width: `${progress}%` }} /></span>
+        )}
+      </div>
+      <div className="sp-media-body">
+        {eyebrow && <div className="sp-media-eyebrow">{eyebrow}</div>}
+        <h4 className="sp-media-title">{title}</h4>
+        {meta && <div className="sp-media-meta">{meta}</div>}
+        {desc && <p className="sp-media-desc">{desc}</p>}
+        {cta && <span className="sp-media-cta">{cta}</span>}
+      </div>
+    </>
+  );
+  return href ? (
+    <a className="sp-media is-link" href={href} target="_blank" rel="noreferrer" aria-label={label}>
+      {body}
+    </a>
+  ) : (
+    <div className="sp-media">{body}</div>
+  );
+}
 
 function Row({ title, sub, href, children }: { title: string; sub?: string; href?: string; children: ReactNode }) {
   const track = useRef<HTMLDivElement>(null);

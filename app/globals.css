@@ -131,7 +131,7 @@ html { background: var(--sp-bg); color-scheme: dark; }
 /* ---- covers ---- */
 .sp-cover { position: absolute; inset: 0; color: #fff; }
 .sp-cover-art { position: absolute; left: 0; right: 0; top: 0; height: 60%; width: 100%; padding: 8% 10% 2%; box-sizing: border-box; opacity: .92; }
-.sp-cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.sp-cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 12% top; }
 .sp-cover-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 55%; background: linear-gradient(0deg, rgba(8,8,15,.9) 0%, rgba(8,8,15,.55) 55%, transparent); pointer-events: none; }
 
 /* ---- 3D card ---- */
@@ -162,6 +162,7 @@ html { background: var(--sp-bg); color-scheme: dark; }
 .sp-card.tall { width: clamp(160px, 14vw, 200px); aspect-ratio: 2/3; }
 .sp-card.tall .sp-card-more p { -webkit-line-clamp: 5; }
 .sp-card.tall .sp-cover-art { padding: 16% 4% 0; }
+.sp-card.tall .sp-cover-img { transform: scale(1.7); transform-origin: 18% 22%; }
 .sp-flags { position: absolute; top: 10px; left: 10px; right: 10px; display: flex; flex-wrap: wrap; gap: 6px; z-index: 2; transform: translateZ(30px); }
 .sp-flag { font-size: var(--fs-meta); font-weight: 600; line-height: 1; padding: 5px 8px; border-radius: 4px; background: var(--badge); color: #fff; }
 .sp-flag.live { background: var(--sp-ok); color: #00261A; }
@@ -181,6 +182,10 @@ html { background: var(--sp-bg); color-scheme: dark; }
 .sp-cert, .sp-doc, .sp-case { width: clamp(250px, 22vw, 320px); text-decoration: none; transition: transform .25s; }
 .sp-cert:hover, .sp-doc:hover, .sp-case:hover { transform: translateY(-4px) scale(1.02); }
 .sp-cert-img { position: relative; aspect-ratio: 16/10; border-radius: 8px; overflow: hidden; background: var(--sp-surface); }
+.sp-cert-art { position: absolute; inset: 10px; border: 1px solid rgba(201,194,255,.35); border-radius: 4px; display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 16px 20px; background: linear-gradient(150deg, #221a46, #14141f 70%); }
+.sp-cert-issuer { font-size: var(--fs-meta); font-weight: 600; color: var(--link); letter-spacing: .08em; text-transform: uppercase; }
+.sp-cert-name { font: 700 18px/1.25 var(--font-ui); color: #fff; max-width: 85%; text-wrap: balance; }
+.sp-cert-seal { position: absolute; right: 14px; bottom: 12px; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--sp-ok); color: #00261A; font-weight: 800; }
 .sp-cert h4 { margin: 10px 0 2px; font-size: 16px; font-weight: 600; line-height: 1.35; }
 .sp-cert > span { font-size: var(--fs-meta); color: var(--sp-muted); }
 .sp-doc { display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: 8px; background: linear-gradient(160deg, #1e1838, var(--sp-surface)); border: 1px solid #2a2547; }

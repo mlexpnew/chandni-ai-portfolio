@@ -6,19 +6,19 @@ const certifications = [
   {
     title: "Google Data Analytics Professional Certificate",
     issuer: "Google",
-    image: "/certificates/google-data-analytics.jpg",
+    image: "" /* add a real certificate image path to show it */,
     link: "https://your-certificate-link.com",
   },
   {
     title: "Machine Learning Specialization",
     issuer: "Coursera",
-    image: "/certificates/ml-specialization.jpg",
+    image: "" /* add a real certificate image path to show it */,
     link: "https://your-certificate-link.com",
   },
   {
     title: "Generative AI with Large Language Models",
     issuer: "DeepLearning.AI",
-    image: "/certificates/genai-llm.jpg",
+    image: "" /* add a real certificate image path to show it */,
     link: "https://your-certificate-link.com",
   },
 ];

@@ -39,6 +39,7 @@ export const projectGroups: ProjectGroup[] = [
         github: "https://github.com/mlexpnew/ArchitectAI-Autonomous-Tech-Lead",
         highlights: ["Planner, reviewer and self-healing agents", "Entity and relationship extraction", "Parallel execution with workflow caching", "Plugin system and 60+ test modules"],
         outcome: "Generates complete backend projects from a requirements file through one CLI command.",
+        cover: "/covers/architectai.webp",
       },
       {
         slug: "supportpilot",
@@ -52,6 +53,7 @@ export const projectGroups: ProjectGroup[] = [
         github: "https://github.com/mlexpnew/supportpilot-ingestion",
         highlights: ["Streaming ingestion with validation and dedup", "API keys with 60 req/min rate limit", "Docker image under 400 MB", "CI, deployment guide and on-call runbook"],
         outcome: "A production-shaped ML service built and documented as a team.",
+        cover: "/covers/supportpilot.webp",
       },
       {
         slug: "reglens",
@@ -73,11 +75,12 @@ export const projectGroups: ProjectGroup[] = [
         description: "Three agents research, write and grade content so every draft arrives already reviewed.",
         longDescription: "A CrewAI pipeline where a Researcher gathers insights, a Writer drafts content and an Evaluator scores and critiques it, powered by Gemini and deployed as a Streamlit app.",
         techStack: ["CrewAI", "LangChain", "Gemini", "Streamlit"],
-        liveDemo: "https://ai-agent-workflow.streamlit.app",
+        liveDemo: "", // was https://ai-agent-workflow.streamlit.app (app no longer exists; redeploy and restore)
         dashboard: "",
         github: "https://github.com/mlexpnew/AI-Agent-Workflow-with-CrewAI-Gemini",
-        highlights: ["Researcher, Writer, Evaluator agents", "Shared context and memory", "Deployed live on Streamlit Cloud"],
+        highlights: ["Researcher, Writer, Evaluator agents", "Shared context and memory", "Built for Streamlit Cloud deployment"],
         outcome: "A working multi-agent app anyone can try in the browser.",
+        cover: "/covers/crewai-content-workflow.webp",
       },
       {
         slug: "n8n-ugc-generator",
@@ -119,6 +122,7 @@ export const projectGroups: ProjectGroup[] = [
         ],
         outcome:
           "Improved knowledge retrieval speed and created a practical assistant for document-based Q&A.",
+        cover: "/covers/rag-chatbot.webp",
       },
       {
         slug: "ai-resume-assistant",

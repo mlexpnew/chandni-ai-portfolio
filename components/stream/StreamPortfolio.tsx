@@ -171,7 +171,15 @@ export default function StreamPortfolio({
       {certifications.map((c) => (
         <div key={c.title} className="sp-cert">
           <div className="sp-cert-img">
-            <Image src={c.image} alt={`${c.title} certificate`} fill sizes="320px" style={{ objectFit: "cover" }} />
+            {c.image ? (
+              <Image src={c.image} alt={`${c.title} certificate`} fill sizes="320px" style={{ objectFit: "cover" }} />
+            ) : (
+              <div className="sp-cert-art" aria-hidden="true">
+                <span className="sp-cert-issuer">{c.issuer}</span>
+                <span className="sp-cert-name">Certificate of completion</span>
+                <span className="sp-cert-seal">✓</span>
+              </div>
+            )}
           </div>
           <h4>{c.title}</h4>
           <span>{c.issuer}</span>

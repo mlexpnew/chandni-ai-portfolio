@@ -417,23 +417,37 @@ function useTilt() {
   return { ref, onPointerMove: onMove, onPointerLeave: onLeave };
 }
 
+function CardInfo({ project }: { project: Project }) {
+  return (
+    <div className="sp-card-more">
+      <div className="sp-info-row">
+        <span className="sp-play-btn" aria-hidden="true">
+          <PlayIcon />
+        </span>
+        <strong className="sp-info-title">{project.title}</strong>
+      </div>
+      <p>{project.description}</p>
+      <div className="sp-card-tags">
+        {project.techStack.slice(0, 3).map((t) => (
+          <span key={t}>{t}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function PosterCard({ project, group, onOpen }: { project: Project; group: ProjectGroup; index: number; onOpen: () => void }) {
   const tilt = useTilt();
   const colors = POSTERS[group.slug] ?? ["#1b1b2f", "#7C5CFF"];
+  const art = Boolean(project.cover);
   return (
-    <button className="sp-card" onClick={onOpen} {...tilt} aria-label={`Open ${project.title}`}>
+    <button className={`sp-card${art ? " has-art" : ""}`} onClick={onOpen} {...tilt} aria-label={`Open ${project.title}`}>
       <div className="sp-card-in">
         <Cover slug={project.slug} colors={colors} image={project.cover} title={project.title} />
         <span className="sp-glare" />
-        <span className="sp-card-title">{project.title}</span>
-        <div className="sp-card-more">
-          <p>{project.description}</p>
-          <div className="sp-card-tags">
-            {project.techStack.slice(0, 3).map((t) => (
-              <span key={t}>{t}</span>
-            ))}
-          </div>
-        </div>
+        <span className="sp-play-center" aria-hidden="true"><PlayIcon /></span>
+        <span className={`sp-card-title${art ? " sr-only" : ""}`}>{project.title}</span>
+        <CardInfo project={project} />
       </div>
     </button>
   );
@@ -441,23 +455,24 @@ function PosterCard({ project, group, onOpen }: { project: Project; group: Proje
 
 function RankCard({ project, group, rank, onOpen }: { project: Project; group: ProjectGroup; rank: number; onOpen: () => void }) {
   const tilt = useTilt();
+  const image = project.poster ?? project.cover;
+  const art = Boolean(image);
   return (
     <div className="sp-rank">
       <span className="sp-rank-n" aria-hidden="true">{rank}</span>
-      <button className="sp-card tall" onClick={onOpen} {...tilt} aria-label={`Open ${project.title}`}>
+      <button className={`sp-card tall${art ? " has-art" : ""}`} onClick={onOpen} {...tilt} aria-label={`Open ${project.title}`}>
         <div className="sp-card-in">
-          <Cover slug={project.slug} colors={POSTERS[group.slug]} image={project.cover} title={project.title} />
+          <Cover slug={project.slug} colors={POSTERS[group.slug]} image={image} title={project.title} />
           <span className="sp-glare" />
+          <span className="sp-play-center" aria-hidden="true"><PlayIcon /></span>
           {(project.slug === "reglens" || project.liveDemo) && (
             <span className="sp-flags">
               {project.slug === "reglens" && <span className="sp-flag">In build</span>}
               {project.liveDemo && <span className="sp-flag live">Live demo</span>}
             </span>
           )}
-          <span className="sp-card-title big">{project.title}</span>
-          <div className="sp-card-more">
-            <p>{project.description}</p>
-          </div>
+          <span className={`sp-card-title big${art ? " sr-only" : ""}`}>{project.title}</span>
+          <CardInfo project={project} />
         </div>
       </button>
     </div>

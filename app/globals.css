@@ -131,11 +131,11 @@ html { background: var(--sp-bg); color-scheme: dark; }
 /* ---- covers ---- */
 .sp-cover { position: absolute; inset: 0; color: #fff; }
 .sp-cover-art { position: absolute; left: 0; right: 0; top: 0; height: 60%; width: 100%; padding: 8% 10% 2%; box-sizing: border-box; opacity: .92; }
-.sp-cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 12% top; }
+.sp-cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .sp-cover-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 55%; background: linear-gradient(0deg, rgba(8,8,15,.9) 0%, rgba(8,8,15,.55) 55%, transparent); pointer-events: none; }
 
 /* ---- 3D card ---- */
-.sp-card { --rx: 0deg; --ry: 0deg; --gx: 50%; --gy: 50%; position: relative; width: clamp(230px, 21vw, 300px); aspect-ratio: 16/10; border: 0; padding: 0; background: none; cursor: pointer; perspective: 800px; text-align: left; z-index: 1; transition: z-index 0s .3s; }
+.sp-card { --rx: 0deg; --ry: 0deg; --gx: 50%; --gy: 50%; position: relative; width: clamp(240px, 22vw, 320px); aspect-ratio: 16/9; border: 0; padding: 0; background: none; cursor: pointer; perspective: 800px; text-align: left; z-index: 1; transition: z-index 0s .3s; }
 .sp-card:hover, .sp-card:focus-visible { z-index: 10; transition: z-index 0s; }
 .sp-card-in { position: absolute; inset: 0; border-radius: 8px; overflow: hidden; transform: rotateX(var(--rx)) rotateY(var(--ry)) scale(1); transform-style: preserve-3d; transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; background: var(--sp-surface); box-shadow: 0 6px 18px -8px #000; }
 .sp-card:hover .sp-card-in, .sp-card:focus-visible .sp-card-in { transform: rotateX(var(--rx)) rotateY(var(--ry)) scale(1.1) translateY(-4%); box-shadow: 0 30px 60px -18px #000, 0 0 0 1px rgba(255,255,255,.12); transition: transform .12s ease-out, box-shadow .35s; }
@@ -156,13 +156,41 @@ html { background: var(--sp-bg); color-scheme: dark; }
 .sp-card-tags span { font-size: var(--fs-meta); font-weight: 600; color: var(--sp-ok); }
 .sp-card:hover .sp-card-more, .sp-card:focus-visible .sp-card-more { opacity: 1; }
 
+
+/* ---- key-art cards (Netflix-style) ---- */
+.sr-only { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.sp-card.has-art .sp-card-in { background: #000; }
+.sp-play-center { position: absolute; left: 50%; top: 42%; width: 58px; height: 58px; margin: -29px 0 0 -29px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.92); color: #000; box-shadow: 0 8px 30px rgba(0,0,0,.5); opacity: 0; transform: scale(.7) translateZ(40px); transition: opacity .2s, transform .25s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
+.sp-play-center svg { width: 24px; height: 24px; margin-left: 3px; }
+.sp-card:hover .sp-play-center, .sp-card:focus-visible .sp-play-center { opacity: 1; transform: scale(1) translateZ(40px); }
+.sp-card.has-art .sp-card-more { top: auto; bottom: 0; height: auto; min-height: 0; padding: 32px 14px 12px; justify-content: flex-end; background: linear-gradient(0deg, rgba(8,8,15,.97) 62%, rgba(8,8,15,.7) 82%, transparent); backdrop-filter: none; transform: translateY(12px); transition: opacity .25s, transform .25s; }
+.sp-card.has-art:hover .sp-card-more, .sp-card.has-art:focus-visible .sp-card-more { transform: none; }
+.sp-card.has-art:not(.tall):hover .sp-play-center, .sp-card.has-art:not(.tall):focus-visible .sp-play-center { opacity: 0; }
+.sp-card.tall.has-art:hover .sp-play-center, .sp-card.tall.has-art:focus-visible .sp-play-center { top: 30%; }
+.sp-info-row { display: flex; align-items: center; gap: 10px; }
+.sp-play-btn { width: 32px; height: 32px; border-radius: 50%; background: #fff; color: #000; display: grid; place-items: center; flex: none; }
+.sp-play-btn svg { width: 14px; height: 14px; margin-left: 2px; }
+.sp-info-title { font: 700 16px/1.25 var(--font-ui); color: #fff; }
+.sp-card.has-art .sp-card-more p { -webkit-line-clamp: 1; }
+.sp-info-title { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.sp-card.tall.has-art .sp-card-more p { -webkit-line-clamp: 3; }
+.sp-card.tall.has-art .sp-flags { top: auto; bottom: 0; left: 0; right: 0; justify-content: center; transition: opacity .2s; }
+.sp-card.tall.has-art .sp-flag { border-radius: 4px 4px 0 0; }
+.sp-card.tall.has-art:hover .sp-flags { opacity: 0; }
+.sp-card.has-art:hover .sp-card-in, .sp-card.has-art:focus-visible .sp-card-in { box-shadow: 0 30px 60px -18px #000, 0 0 0 2px rgba(255,255,255,.85); }
+.sp-modal-hero .sp-cover-img { object-position: center 35%; }
+@media (hover: none) {
+  .sp-card .sp-card-more, .sp-card .sp-play-center, .sp-card .sp-glare { display: none; }
+  .sp-card:hover .sp-card-in, .sp-card:focus-visible .sp-card-in { transform: none; }
+  .sp-card.tall.has-art:hover .sp-flags { opacity: 1; }
+}
+
 /* top-N rank cards */
 .sp-rank { display: flex; align-items: flex-end; }
 .sp-rank-n { font: 900 clamp(130px, 13vw, 190px)/.75 var(--font-ui); color: var(--sp-bg); -webkit-text-stroke: 3px #6b6782; margin-right: -18px; letter-spacing: -.06em; user-select: none; }
 .sp-card.tall { width: clamp(160px, 14vw, 200px); aspect-ratio: 2/3; }
 .sp-card.tall .sp-card-more p { -webkit-line-clamp: 5; }
 .sp-card.tall .sp-cover-art { padding: 16% 4% 0; }
-.sp-card.tall .sp-cover-img { transform: scale(1.7); transform-origin: 18% 22%; }
 .sp-flags { position: absolute; top: 10px; left: 10px; right: 10px; display: flex; flex-wrap: wrap; gap: 6px; z-index: 2; transform: translateZ(30px); }
 .sp-flag { font-size: var(--fs-meta); font-weight: 600; line-height: 1; padding: 5px 8px; border-radius: 4px; background: var(--badge); color: #fff; }
 .sp-flag.live { background: var(--sp-ok); color: #00261A; }

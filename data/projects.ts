@@ -152,21 +152,6 @@ export const projectGroups: ProjectGroup[] = [
         outcome: "A wealth-management workflow where agents propose and humans approve.",
       },
       {
-        slug: "crewai-content-workflow",
-        title: "CrewAI Content Workflow",
-        domain: "Agentic & GenAI systems",
-        description: "Three agents research, write and grade content so every draft arrives already reviewed.",
-        longDescription: "A CrewAI pipeline where a Researcher gathers insights, a Writer drafts content and an Evaluator scores and critiques it, powered by Gemini and deployed as a Streamlit app.",
-        techStack: ["CrewAI", "LangChain", "Gemini", "Streamlit"],
-        liveDemo: "", // was https://ai-agent-workflow.streamlit.app (app no longer exists; redeploy and restore)
-        dashboard: "",
-        github: "https://github.com/mlexpnew/AI-Agent-Workflow-with-CrewAI-Gemini",
-        highlights: ["Researcher, Writer, Evaluator agents", "Shared context and memory", "Built for Streamlit Cloud deployment"],
-        outcome: "A working multi-agent app anyone can try in the browser.",
-        cover: "/thumbs/crewai-content-workflow.webp",
-        poster: "/posters/crewai-content-workflow.webp",
-      },
-      {
         slug: "n8n-ugc-generator",
         title: "Auto UGC Generator",
         domain: "Agentic & GenAI systems",

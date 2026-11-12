@@ -62,13 +62,6 @@ const blueprintBySlug: Record<string, ProjectBlueprint> = {
     challenges: ["Dense legal text", "Citation accuracy", "Versioned regulations"],
     learnings: ["LangGraph loops", "Grounding and verification", "Domain retrieval"],
   },
-  "crewai-content-workflow": {
-    impact: ["Reviewed drafts", "Deployable Streamlit app"],
-    architecture: ["Topic → Researcher → Writer → Evaluator → Final Content"],
-    screenshots: ["Streamlit App", "Agent Log", "Final Output"],
-    challenges: ["Agent hand-offs", "Evaluation criteria"],
-    learnings: ["CrewAI roles", "Gemini prompting", "Streamlit deploys"],
-  },
   "n8n-ugc-generator": {
     impact: ["Posts for 3 platforms", "No manual copywriting"],
     architecture: ["Reviews (CSV/API/Sheets) → Gemini Summary → Templates → X / LinkedIn / Instagram"],

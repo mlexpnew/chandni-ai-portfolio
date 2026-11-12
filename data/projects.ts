@@ -25,29 +25,94 @@ export type ProjectGroup = {
 
 export const projectGroups: ProjectGroup[] = [
   {
+    // Top 5 row and the hero "Play" button use this group (slug kept for routing)
     slug: "agentic-ai",
-    domain: "Agentic AI",
+    domain: "Flagship builds",
     color: "text-violet-300",
     projects: [
       {
+        slug: "invoiceiq",
+        title: "InvoiceIQ",
+        domain: "Flagship builds",
+        description: "Checks GST purchase invoices and reconciles them with GSTR-2B before a business claims input tax credit.",
+        longDescription: "InvoiceIQ reads supplier invoice PDFs, validates them against GST rules (GSTIN check digit, tax type by state, GST 2.0 slabs, Section 16(4) ITC window, duplicates, arithmetic), reconciles them with the GSTR-2B from the GST portal and produces a review workbook, the ITC at risk, a supplier chase list and a Tally import of clean invoices. Rules handle known layouts; an LLM fallback fills only missing fields and everything is re-validated.",
+        techStack: ["Python", "FastAPI", "Pydantic", "pdfplumber", "LLM fallback (Groq / Gemini)", "Docker", "Streamlit"],
+        liveDemo: "",
+        dashboard: "",
+        github: "https://github.com/mlexpnew/Genai--Financial-AI-Copilot",
+        highlights: ["100% extraction, error detection and reconciliation on a 160-invoice benchmark", "Held-out layout: 0 wrong invoices posted, 60/60 routed to the LLM fallback", "11 GST compliance checks and 5 reconciliation buckets", "CI fails if any benchmark score drops below 95%"],
+        outcome: "Built for CA firms and finance teams that reconcile purchase invoices every month.",
+        cover: "/thumbs/invoice-parser.webp",
+      },
+      {
+        slug: "reglens",
+        title: "RegLens",
+        domain: "Flagship builds",
+        description: "A compliance research agent that answers SEBI regulation questions with citations to the source circulars.",
+        longDescription: "RegLens plans sub-questions, retrieves relevant SEBI circulars and master directions, drafts an answer and checks it against the sources before replying, so every claim carries a citation.",
+        techStack: ["Python", "LangGraph", "RAG", "Vector DB"],
+        liveDemo: "",
+        dashboard: "",
+        github: "https://github.com/mlexpnew/reglens",
+        highlights: ["Agentic plan, retrieve, verify loop", "Citations on every claim", "Built for fintech compliance teams"],
+        outcome: "Currently in build as a flagship agentic project.",
+        cover: "/thumbs/reglens.webp",
+        poster: "/posters/reglens.webp",
+      },
+      {
+        slug: "hirelens",
+        title: "HireLens",
+        domain: "Flagship builds",
+        description: "Blind, explainable resume screening: a ranked shortlist with evidence, gaps and interview questions.",
+        longDescription: "HireLens redacts names, contact details, age and gender before scoring, separates skills a candidate actually used at work from skills only listed, measures experience from role dates and scores against a published rubric. Requirements gate the shortlist and a recruiter always makes the final call.",
+        techStack: ["Python", "FastAPI", "scikit-learn", "pdfplumber", "python-docx", "Streamlit", "Docker"],
+        liveDemo: "",
+        dashboard: "",
+        github: "https://github.com/mlexpnew/Genai-EduGen-AI-Lesson-Quiz-Builder",
+        highlights: ["R-precision 100% vs 42% for TF-IDF matching and 30% for keyword ATS filters", "Swapping every name and gender changes scores by exactly 0", "Keyword stuffers, juniors and near-misses never shortlisted", "Held-out resume layout scored 100% on its first run"],
+        outcome: "Built for recruiters and staffing firms screening high volumes fairly.",
+        cover: "/thumbs/resume-screening-tool.webp",
+      },
+      {
+        slug: "retainlens",
+        title: "RetainLens",
+        domain: "Flagship builds",
+        description: "Churn early warning for banks: who is about to leave, why, and who to call first with a fixed budget.",
+        longDescription: "RetainLens scores 10,000 real bank customers with a calibrated gradient-boosting model, explains each score with reason codes and talking points, and plans retention calls by expected value within a budget. Gender is excluded as an input, fairness is reported by gender and market, and a PSI drift monitor flags when to retrain.",
+        techStack: ["Python", "scikit-learn", "pandas", "FastAPI", "Streamlit", "Docker"],
+        liveDemo: "",
+        dashboard: "",
+        github: "https://github.com/mlexpnew/Customer_Engagement_Retention_Analytics",
+        highlights: ["Held-out ROC-AUC 0.864; top 10% riskiest: 82% actually left (4.0x base rate)", "EUR 20k budget test: EUR 406,848 net value vs 111,726 for random targeting", "Gender excluded at a measured cost of 0.002 AUC", "CI retrains from scratch with a quality gate"],
+        outcome: "Built for retail bank retention teams deciding who to call each month.",
+        cover: "/thumbs/customer-churn-predictor.webp",
+      },
+      {
         slug: "architectai",
         title: "ArchitectAI",
-        domain: "Agentic AI",
+        domain: "Flagship builds",
         description: "An autonomous tech lead that turns plain-English requirements into a working, reviewed backend project.",
-        longDescription: "ArchitectAI is a multi-agent pipeline. A planner breaks requirements into tasks, generators build models, schemas, APIs and services, a reviewer critiques the output and a quality gate triggers self-healing fixes before the project is written to a repository.",
-        techStack: ["Python", "CrewAI", "Groq", "FastAPI", "Docker", "Pytest"],
+        longDescription: "ArchitectAI is a multi-agent pipeline. A planner breaks requirements into tasks, generators build models, schemas, APIs and services, a reviewer critiques the output and a quality gate triggers self-healing fixes. A verification harness generates 8 projects in CI and runs a full create, read, update, delete round-trip on every entity, so working code is measured rather than claimed.",
+        techStack: ["Python", "CrewAI", "Groq", "FastAPI", "SQLAlchemy", "Docker", "Pytest"],
         liveDemo: "",
         dashboard: "",
         github: "https://github.com/mlexpnew/ArchitectAI-Autonomous-Tech-Lead",
-        highlights: ["Planner, reviewer and self-healing agents", "Entity and relationship extraction", "Parallel execution with workflow caching", "Plugin system and 60+ test modules"],
+        highlights: ["Planner, reviewer and self-healing agents", "CI verification: 8/8 generated apps boot and pass 112/112 CRUD checks", "Multi-provider LLM engine with offline mock mode", "105 unit tests in CI"],
         outcome: "Generates complete backend projects from a requirements file through one CLI command.",
         cover: "/thumbs/architectai.webp",
         poster: "/posters/architectai.webp",
       },
+    ],
+  },
+  {
+    slug: "generative-ai",
+    domain: "Agentic & GenAI systems",
+    color: "text-purple-400",
+    projects: [
       {
         slug: "supportpilot",
         title: "SupportPilot",
-        domain: "Agentic AI",
+        domain: "Agentic & GenAI systems",
         description: "A support-ticket triage API: ingest, clean, deduplicate and classify tickets behind secured endpoints.",
         longDescription: "SupportPilot streams JSONL tickets through Pydantic v2 validation, deduplication and PII redaction, then serves a FastAPI triage model with API-key auth, sliding-window rate limits and an operational metrics endpoint.",
         techStack: ["Python 3.11", "FastAPI", "Pydantic v2", "Alembic", "Docker", "GitHub Actions"],
@@ -60,24 +125,36 @@ export const projectGroups: ProjectGroup[] = [
         poster: "/posters/supportpilot.webp",
       },
       {
-        slug: "reglens",
-        title: "RegLens",
-        domain: "Agentic AI",
-        description: "A compliance research agent that answers SEBI regulation questions with citations to the source circulars.",
-        longDescription: "RegLens plans sub-questions, retrieves relevant SEBI circulars and master directions, drafts an answer and checks it against the sources before replying, so every claim carries a citation.",
-        techStack: ["Python", "LangGraph", "RAG", "Vector DB"],
+        slug: "data-analyst-agent",
+        title: "Autonomous Data Analyst Agent",
+        domain: "Agentic & GenAI systems",
+        description: "An agent that explores a dataset, writes and runs its own Python analysis, and explains the results in business terms.",
+        longDescription: "Upload a dataset and the agent profiles columns, missing values, duplicates and outliers, cleans the data, runs statistical analysis, generates charts, writes and executes Python analysis code with Gemini, and turns the results into plain-English insights and recommendations.",
+        techStack: ["Python", "Gemini", "pandas", "Streamlit"],
         liveDemo: "",
         dashboard: "",
-        github: "https://github.com/mlexpnew",
-        highlights: ["Agentic plan, retrieve, verify loop", "Citations on every claim", "Built for fintech compliance teams"],
-        outcome: "Currently in build as a flagship agentic project.",
-        cover: "/thumbs/reglens.webp",
-        poster: "/posters/reglens.webp",
+        github: "https://github.com/mlexpnew/autonomous-data-analyst-agent",
+        highlights: ["Automatic profiling and cleaning", "LLM-written analysis code, executed and charted", "Insights and recommendations in plain English"],
+        outcome: "Turns a raw CSV into an analyst-style report without writing code.",
+        cover: "/thumbs/ecommerce-analytics.webp",
+      },
+      {
+        slug: "wealthpilot",
+        title: "WealthPilot: Portfolio Rebalancing Agent",
+        domain: "Agentic & GenAI systems",
+        description: "A multi-agent system that monitors portfolios, assesses risk and proposes explainable rebalancing trades for human approval.",
+        longDescription: "Specialised agents handle portfolio monitoring, risk, market data, trade construction, tax impact, compliance validation, human approval and audit logging. Recommendations come with explanations, Monte Carlo simulations and PDF reports, served through FastAPI and a Streamlit dashboard.",
+        techStack: ["Python", "Multi-agent", "FastAPI", "Streamlit", "Docker"],
+        liveDemo: "",
+        dashboard: "",
+        github: "https://github.com/mlexpnew/Autonomous-Portfolio-Rebalancing-Agent",
+        highlights: ["10 specialised agents from monitoring to audit", "Human-in-the-loop approval before any trade", "Compliance validation and full audit log", "Monte Carlo simulation and PDF reports"],
+        outcome: "A wealth-management workflow where agents propose and humans approve.",
       },
       {
         slug: "crewai-content-workflow",
         title: "CrewAI Content Workflow",
-        domain: "Agentic AI",
+        domain: "Agentic & GenAI systems",
         description: "Three agents research, write and grade content so every draft arrives already reviewed.",
         longDescription: "A CrewAI pipeline where a Researcher gathers insights, a Writer drafts content and an Evaluator scores and critiques it, powered by Gemini and deployed as a Streamlit app.",
         techStack: ["CrewAI", "LangChain", "Gemini", "Streamlit"],
@@ -92,13 +169,13 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "n8n-ugc-generator",
         title: "Auto UGC Generator",
-        domain: "Agentic AI",
+        domain: "Agentic & GenAI systems",
         description: "An n8n workflow that turns customer reviews into ready-to-post social content.",
         longDescription: "The workflow pulls reviews from CSV, APIs or Google Sheets, summarizes highlights with Gemini and formats posts for X, LinkedIn and Instagram using reusable templates.",
         techStack: ["n8n", "Gemini", "Google Sheets"],
         liveDemo: "",
         dashboard: "",
-        github: "https://github.com/mlexpnew-lab/n8n-auto-ugc-generator",
+        github: "https://github.com/mlexpnew/n8n-auto-ugc-generator",
         highlights: ["Multi-source review ingestion", "LLM summarization", "Platform-specific post templates"],
         outcome: "Turns raw feedback into marketing content with no manual writing.",
         cover: "/thumbs/n8n-ugc-generator.webp",
@@ -107,484 +184,52 @@ export const projectGroups: ProjectGroup[] = [
     ],
   },
   {
-    slug: "generative-ai",
-    domain: "Generative AI",
-    color: "text-purple-400",
-    projects: [
-      {
-        slug: "rag-chatbot",
-        title: "RAG Chatbot",
-        domain: "Generative AI",
-        description:
-          "A retrieval-augmented chatbot built with Python, embeddings, and vector databases.",
-        longDescription:
-          "This project is a full retrieval-augmented generation system that lets users ask questions over documents and get grounded answers. It combines document chunking, embeddings, vector search, and an LLM response layer.",
-        techStack: ["Python", "LangChain", "FAISS", "Streamlit"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/rag-chatbot",
-        highlights: [
-          "Document ingestion pipeline",
-          "Semantic search over chunks",
-          "Grounded answer generation",
-          "Chat UI with source context",
-        ],
-        outcome:
-          "Improved knowledge retrieval speed and created a practical assistant for document-based Q&A.",
-        cover: "/thumbs/rag-chatbot.webp",
-      },
-      {
-        slug: "ai-resume-assistant",
-        title: "AI Resume Assistant",
-        domain: "Generative AI",
-        description:
-          "An AI assistant that analyzes resumes and suggests improvements using LLMs.",
-        longDescription:
-          "This tool reviews resumes, extracts strengths and gaps, and gives improvement suggestions using a language model pipeline. It can also compare a resume against a job description.",
-        techStack: ["Python", "OpenAI", "FastAPI", "NLP"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/ai-resume-assistant",
-        highlights: [
-          "Resume parsing",
-          "Skill gap analysis",
-          "Job match suggestions",
-          "FastAPI backend",
-        ],
-        outcome:
-          "Helped structure resume feedback into a practical, recruiter-friendly workflow.",
-        cover: "/thumbs/ai-resume-assistant.webp",
-      },
-      {
-        slug: "document-qa-bot",
-        title: "Document Q&A Bot",
-        domain: "Generative AI",
-        description:
-          "A smart document question-answering system for PDFs and knowledge bases.",
-        longDescription:
-          "This project supports PDF upload, text extraction, chunking, embeddings, and question answering. It is designed for internal docs, policies, and study materials.",
-        techStack: ["Python", "RAG", "ChromaDB", "LLM"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/document-qa-bot",
-        highlights: [
-          "PDF upload support",
-          "Chunk + embed pipeline",
-          "Citation-based answers",
-          "Knowledge base search",
-        ],
-        outcome:
-          "Created a useful assistant for document-heavy workflows and internal knowledge access.",
-        cover: "/thumbs/document-qa-bot.webp",
-      },
-      {
-        slug: "meeting-notes-generator",
-        title: "Meeting Notes Generator",
-        domain: "Generative AI",
-        description:
-          "An AI tool that converts raw meeting text into structured summaries and action points.",
-        longDescription:
-          "This application transforms unstructured meeting text into clean summaries, action items, decisions, and follow-up tasks using an LLM-based summarization flow.",
-        techStack: ["Python", "LLM", "NLP", "Automation"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/meeting-notes-generator",
-        highlights: [
-          "Summary generation",
-          "Action item extraction",
-          "Decision tracking",
-          "Automation pipeline",
-        ],
-        outcome:
-          "Reduced manual note-taking effort and made meetings easier to review later.",
-        cover: "/thumbs/meeting-notes-generator.webp",
-      },
-    ],
-  },
-  {
-    slug: "machine-learning",
-    domain: "Machine Learning",
-    color: "text-pink-400",
-    projects: [
-      {
-        slug: "airbnb-pricing-model",
-        title: "Airbnb Pricing Model",
-        domain: "Machine Learning",
-        description:
-          "A dynamic pricing model using data analysis, feature engineering, and prediction logic.",
-        longDescription:
-          "This project predicts property pricing using historical listing data, engineered features, and machine learning regression techniques.",
-        techStack: ["Python", "Pandas", "Scikit-learn", "XGBoost"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/airbnb-pricing-model",
-        highlights: [
-          "Feature engineering",
-          "Regression modeling",
-          "Price prediction",
-          "Model evaluation",
-        ],
-        outcome:
-          "Produced a practical pricing recommendation model for real estate-style listings.",
-        cover: "/thumbs/airbnb-pricing-model.webp",
-      },
-      {
-        slug: "customer-churn-predictor",
-        title: "Customer Churn Predictor",
-        domain: "Machine Learning",
-        description:
-          "Predicts customer churn using classification models and feature importance analysis.",
-        longDescription:
-          "This model identifies customers likely to leave by analyzing usage behavior, demographics, and service patterns.",
-        techStack: ["Python", "ML", "SQL", "Power BI"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/customer-churn-predictor",
-        highlights: [
-          "Binary classification",
-          "Feature importance",
-          "Business risk insight",
-          "Prediction pipeline",
-        ],
-        outcome:
-          "Helped prioritize retention efforts by identifying high-risk customer segments.",
-        cover: "/thumbs/customer-churn-predictor.webp",
-      },
-      {
-        slug: "loan-approval-predictor",
-        title: "Loan Approval Predictor",
-        domain: "Machine Learning",
-        description:
-          "A machine learning model that predicts whether a loan application should be approved.",
-        longDescription:
-          "This project uses classification logic to support a lending workflow by predicting approval outcomes from applicant attributes.",
-        techStack: ["Python", "Classification", "Pandas", "Scikit-learn"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/loan-approval-predictor",
-        highlights: [
-          "Approval prediction",
-          "Data preprocessing",
-          "Classification model",
-          "Decision support",
-        ],
-        outcome:
-          "Created a useful decision-support model for finance-style application screening.",
-        cover: "/thumbs/loan-approval-predictor.webp",
-      },
-      {
-        slug: "house-price-predictor",
-        title: "House Price Predictor",
-        domain: "Machine Learning",
-        description:
-          "A regression model that estimates house prices based on property features.",
-        longDescription:
-          "This project predicts housing prices from property characteristics, location variables, and market-related numeric features.",
-        techStack: ["Python", "Regression", "ML", "Data Analysis"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/house-price-predictor",
-        highlights: [
-          "Regression analysis",
-          "Market estimation",
-          "Model tuning",
-          "Property analytics",
-        ],
-        outcome:
-          "Provided a pricing estimator useful for analysis and model comparison.",
-        cover: "/thumbs/house-price-predictor.webp",
-      },
-    ],
-  },
-  {
     slug: "data-analytics",
-    domain: "Data Analytics",
+    domain: "Data engineering & analytics",
     color: "text-cyan-400",
     projects: [
       {
-        slug: "google-search-quality-analysis",
-        title: "Google Search Quality Analysis",
-        domain: "Data Analytics",
-        description:
-          "An analytics project focused on search relevance, query patterns, and quality insights.",
-        longDescription:
-          "This project analyzes search logs and query behavior to surface relevance issues, ranking patterns, and optimization opportunities.",
-        techStack: ["SQL", "Python", "Tableau", "Pandas"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/google-search-quality-analysis",
-        highlights: [
-          "Query analysis",
-          "Search relevance insights",
-          "Analytics dashboard",
-          "Reporting workflow",
-        ],
-        outcome: "Turned raw search data into actionable product insights.",
-        cover: "/thumbs/google-search-quality-analysis.webp",
-      },
-      {
-        slug: "sales-dashboard",
-        title: "Sales Dashboard",
-        domain: "Data Analytics",
-        description:
-          "Interactive dashboard to analyze sales performance and business trends.",
-        longDescription:
-          "This dashboard provides sales KPIs, revenue trends, category performance, and region-level breakdowns for decision-making.",
-        techStack: ["Power BI", "Excel", "SQL", "Python"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/sales-dashboard",
-        highlights: [
-          "Revenue analysis",
-          "KPI visuals",
-          "Trend reporting",
-          "Business insights",
-        ],
-        outcome:
-          "Helped create a clearer view of sales performance and business trends.",
-        cover: "/thumbs/sales-dashboard.webp",
-      },
-      {
-        slug: "revenue-insights-report",
-        title: "Revenue Insights Report",
-        domain: "Data Analytics",
-        description:
-          "A business reporting project that summarizes revenue, growth, and KPI trends.",
-        longDescription:
-          "This report combines SQL, spreadsheet analysis, and visualization to present a business-ready revenue summary.",
-        techStack: ["SQL", "Excel", "Power BI", "Reporting"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/revenue-insights-report",
-        highlights: [
-          "Revenue tracking",
-          "Reporting format",
-          "Trend analysis",
-          "Executive summary",
-        ],
-        outcome:
-          "Made business reporting easier to read and more decision-focused.",
-        cover: "/thumbs/revenue-insights-report.webp",
-      },
-      {
-        slug: "ecommerce-analytics",
-        title: "E-commerce Analytics",
-        domain: "Data Analytics",
-        description:
-          "Analysis of customer behavior, product sales, and conversion trends.",
-        longDescription:
-          "This project studies ecommerce behavior, sales funnels, and product performance to identify growth opportunities.",
-        techStack: ["Python", "SQL", "Dashboard", "Analytics"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/ecommerce-analytics",
-        highlights: [
-          "Customer behavior",
-          "Product performance",
-          "Conversion trends",
-          "Funnel analysis",
-        ],
-        outcome:
-          "Enabled deeper understanding of ecommerce sales and customer journeys.",
-        cover: "/thumbs/ecommerce-analytics.webp",
-      },
-    ],
-  },
-  {
-    slug: "automation",
-    domain: "Automation",
-    color: "text-yellow-400",
-    projects: [
-      {
-        slug: "resume-screening-tool",
-        title: "Resume Screening Tool",
-        domain: "Automation",
-        description:
-          "A Python-based system to classify and score resumes against job descriptions.",
-        longDescription:
-          "This automation tool reduces manual resume screening by using NLP rules and scoring logic aligned with job requirements.",
-        techStack: ["Python", "NLP", "FastAPI", "Automation"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/resume-screening-tool",
-        highlights: [
-          "Resume scoring",
-          "Job matching",
-          "NLP pipeline",
-          "Workflow automation",
-        ],
-        outcome: "Reduced manual effort in early candidate filtering.",
-        cover: "/thumbs/resume-screening-tool.webp",
-      },
-      {
-        slug: "lead-email-bot",
-        title: "Lead Email Bot",
-        domain: "Automation",
-        description:
-          "Automates lead follow-up emails using rules and AI-generated responses.",
-        longDescription:
-          "This bot monitors leads and sends smart follow-up messages using automation rules and AI response generation.",
-        techStack: ["Python", "SMTP", "APIs", "AI"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/lead-email-bot",
-        highlights: [
-          "Auto follow-up",
-          "Rule-based workflow",
-          "Email automation",
-          "AI response support",
-        ],
-        outcome:
-          "Improved follow-up consistency and saved manual outreach time.",
-        cover: "/thumbs/lead-email-bot.webp",
-      },
-      {
-        slug: "invoice-parser",
-        title: "Invoice Parser",
-        domain: "Automation",
-        description:
-          "Extracts and structures invoice data automatically from uploaded documents.",
-        longDescription:
-          "This project uses OCR and parsing logic to convert raw invoices into structured tabular data.",
-        techStack: ["Python", "OCR", "Automation", "Pandas"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/invoice-parser",
-        highlights: [
-          "OCR extraction",
-          "Structured output",
-          "Document automation",
-          "Data cleanup",
-        ],
-        outcome:
-          "Reduced manual invoice processing and improved data consistency.",
-        cover: "/thumbs/invoice-parser.webp",
-      },
-      {
-        slug: "report-generator",
-        title: "Report Generator",
-        domain: "Automation",
-        description:
-          "Automatically creates weekly summary reports from raw data sources.",
-        longDescription:
-          "This system compiles data into formatted weekly reports on a schedule, making recurring reporting easier.",
-        techStack: ["Python", "Excel", "Scheduling", "Scripts"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/report-generator",
-        highlights: [
-          "Weekly automation",
-          "Formatted summaries",
-          "Scheduled generation",
-          "Data collection",
-        ],
-        outcome:
-          "Simplified repetitive reporting and reduced manual work.",
+        slug: "pricing-etl-airflow",
+        title: "Product Pricing ETL with Airflow",
+        domain: "Data engineering & analytics",
+        description: "A daily pipeline that scrapes product prices, converts them with live exchange rates and loads analytics-ready data into PostgreSQL.",
+        longDescription: "Apache Airflow orchestrates four tasks every day: scrape products, fetch the GBP to INR exchange rate, transform pricing data and load it into PostgreSQL. The whole stack runs in Docker Compose.",
+        techStack: ["Python", "Apache Airflow", "PostgreSQL", "Docker Compose"],
+        liveDemo: "",
+        dashboard: "",
+        github: "https://github.com/mlexpnew/product-pricing-airflow-etl",
+        highlights: ["Scheduled DAG with four isolated tasks", "Live currency conversion", "Reproducible with Docker Compose"],
+        outcome: "A production-shaped batch pipeline from source to warehouse.",
         cover: "/thumbs/report-generator.webp",
       },
-    ],
-  },
-  {
-    slug: "internship-projects",
-    domain: "Internship Projects",
-    color: "text-emerald-400",
-    projects: [
       {
-        slug: "internship-project-tracker",
-        title: "Internship Project Tracker",
-        domain: "Internship Projects",
-        description:
-          "A project created during internship work to organize tasks, deadlines, and deliverables.",
-        longDescription:
-          "This tracker was built to manage internship assignments, timelines, and deliverables in a clear and organized way.",
-        techStack: ["Python", "Excel", "Data Analysis", "Reporting"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/internship-project-tracker",
-        highlights: [
-          "Task tracking",
-          "Deadline visibility",
-          "Status reporting",
-          "Workflow organization",
-        ],
-        outcome:
-          "Improved visibility of internship tasks and deliverables.",
-        cover: "/thumbs/internship-project-tracker.webp",
+        slug: "bangalore-airbnb-pricing",
+        title: "Bangalore Airbnb Dynamic Pricing",
+        domain: "Data engineering & analytics",
+        description: "A database-driven dynamic pricing system for Bangalore Airbnb listings, from PostgreSQL to a deployed Streamlit app.",
+        longDescription: "Listing data lives in PostgreSQL, a machine learning model recommends prices from listing features, and a Streamlit app serves the recommendations.",
+        techStack: ["Python", "PostgreSQL", "scikit-learn", "Streamlit"],
+        liveDemo: "",
+        dashboard: "",
+        github: "https://github.com/mlexpnew/bangalore-airbnb-dynamic-pricing",
+        highlights: ["End-to-end: database, model and app", "Feature engineering on listing data", "Deployed with Streamlit"],
+        outcome: "Price recommendations for hosts, built end to end.",
+        cover: "/thumbs/airbnb-pricing-model.webp",
       },
       {
-        slug: "internship-analytics-dashboard",
-        title: "Internship Analytics Dashboard",
-        domain: "Internship Projects",
-        description:
-          "A dashboard built during internship to summarize insights, progress, and performance metrics.",
-        longDescription:
-          "This dashboard presents internship progress metrics, task summaries, and analysis visuals in one place.",
-        techStack: ["Power BI", "SQL", "Python", "Charts"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/internship-analytics-dashboard",
-        highlights: [
-          "Progress charts",
-          "Task summaries",
-          "Performance metrics",
-          "Dashboard design",
-        ],
-        outcome:
-          "Made internship reporting clearer and easier to review.",
-        cover: "/thumbs/internship-analytics-dashboard.webp",
-      },
-      {
-        slug: "internship-task-automation",
-        title: "Internship Task Automation",
-        domain: "Internship Projects",
-        description:
-          "Automated repetitive internship tasks and reporting using Python scripts.",
-        longDescription:
-          "This automation project helped reduce repetitive work by running structured Python scripts for reporting tasks.",
-        techStack: ["Python", "Automation", "Scripts", "APIs"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/internship-task-automation",
-        highlights: [
-          "Automated workflows",
-          "Script-based reporting",
-          "Task reduction",
-          "API integration",
-        ],
-        outcome: "Saved time on repetitive internship tasks.",
-        cover: "/thumbs/internship-task-automation.webp",
-      },
-      {
-        slug: "internship-data-cleaning-project",
-        title: "Internship Data Cleaning Project",
-        domain: "Internship Projects",
-        description:
-          "Cleaned and transformed raw datasets into analysis-ready formats during internship.",
-        longDescription:
-          "This project focused on data quality, cleaning rules, transformation logic, and preparing datasets for analysis.",
-        techStack: ["Python", "Pandas", "SQL", "Data Cleaning"],
-        liveDemo: "https://your-live-demo-link.com",
-        dashboard: "https://your-live-dashboard-link.com",
-        github: "https://github.com/your-github/internship-data-cleaning-project",
-        highlights: [
-          "Cleaning logic",
-          "Transformation pipeline",
-          "Data quality improvement",
-          "Analysis-ready data",
-        ],
-        outcome:
-          "Improved dataset quality for later analysis and reporting.",
-        cover: "/thumbs/internship-data-cleaning-project.webp",
+        slug: "trader-sentiment",
+        title: "Trader Performance vs Market Sentiment",
+        domain: "Data engineering & analytics",
+        description: "How Bitcoin Fear and Greed sentiment shapes trader behaviour and profit on Hyperliquid, with a live dashboard.",
+        longDescription: "Joins the Bitcoin Fear and Greed Index with Hyperliquid trader history, engineers PnL, win rate, trade frequency and position size, segments traders and compares behaviour across sentiment regimes, then proposes strategies. A live Streamlit dashboard lets anyone explore the results.",
+        techStack: ["Python", "pandas", "Streamlit"],
+        liveDemo: "https://primetrade-trader-sentiment-analysis.streamlit.app/",
+        dashboard: "",
+        github: "https://github.com/mlexpnew/primetrade-trader-sentiment-analysis",
+        highlights: ["Sentiment regimes vs PnL and win rate", "Trader segmentation", "Live interactive dashboard"],
+        outcome: "Actionable strategy ideas backed by real trading data.",
+        cover: "/thumbs/revenue-insights-report.webp",
       },
     ],
   },
 ];
-
-export function getProjectGroupBySlug(slug: string) {
-  return projectGroups.find((group) => group.slug === slug);
-}
-
-export function getProjectBySlug(groupSlug: string, projectSlug: string) {
-  const group = getProjectGroupBySlug(groupSlug);
-  return group?.projects.find((project) => project.slug === projectSlug);
-}

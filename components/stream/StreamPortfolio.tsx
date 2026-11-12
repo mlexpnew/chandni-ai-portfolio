@@ -21,8 +21,8 @@ const PROFILES: { key: ProfileKey; label: string; hue: string; line: string; tag
     label: "Recruiter",
     hue: "linear-gradient(135deg,#7C5CFF,#3B82F6)",
     line: "Hiring an AI engineer? Start with the shipped work.",
-    tagline: "Agentic AI engineer. 4 internships, 1 current role, 25+ projects. Available to join now.",
-    order: ["agentic-ai", "experience", "generative-ai", "certs", "machine-learning", "automation", "data-analytics", "internship-projects", "writing", "cases"],
+    tagline: "Agentic AI engineer. 4 internships, 1 current role, 13 projects on GitHub. Available to join now.",
+    order: ["agentic-ai", "experience", "generative-ai", "certs", "data-analytics", "writing", "cases"],
   },
   {
     key: "engineer",
@@ -30,7 +30,7 @@ const PROFILES: { key: ProfileKey; label: string; hue: string; line: string; tag
     hue: "linear-gradient(135deg,#FF4D6D,#F59E0B)",
     line: "Want the architecture? Every card opens the pipeline.",
     tagline: "Multi-agent orchestration, RAG pipelines and FastAPI services with tests, Docker and CI.",
-    order: ["agentic-ai", "generative-ai", "automation", "machine-learning", "writing", "experience", "data-analytics", "internship-projects", "certs", "cases"],
+    order: ["agentic-ai", "generative-ai", "writing", "experience", "data-analytics", "certs", "cases"],
   },
   {
     key: "founder",
@@ -38,7 +38,7 @@ const PROFILES: { key: ProfileKey; label: string; hue: string; line: string; tag
     hue: "linear-gradient(135deg,#10B981,#06B6D4)",
     line: "Need agents that save real hours? Here is what they did.",
     tagline: "I turn messy workflows into AI agents: support triage, content pipelines, compliance research.",
-    order: ["agentic-ai", "automation", "generative-ai", "cases", "experience", "data-analytics", "machine-learning", "internship-projects", "certs", "writing"],
+    order: ["agentic-ai", "generative-ai", "cases", "experience", "data-analytics", "certs", "writing"],
   },
 ];
 
@@ -135,7 +135,7 @@ export default function StreamPortfolio({
   groups.forEach((g) => {
     rows[g.slug] =
       g.slug === "agentic-ai" ? (
-        <Row key={g.slug} title={`Top ${g.projects.length} for ${p.label.toLowerCase()}s`} sub="Agentic AI originals" href={`/projects/${g.slug}`}>
+        <Row key={g.slug} title={`Top ${g.projects.length} for ${p.label.toLowerCase()}s`} sub="Flagship builds, measured in CI" href={`/projects/${g.slug}`}>
           {g.projects.map((proj, i) => (
             <RankCard key={proj.slug} rank={i + 1} project={proj} group={g} onOpen={() => setSelected({ project: proj, group: g })} />
           ))}
@@ -325,7 +325,7 @@ export default function StreamPortfolio({
                   I work on agentic AI at Zetheta Algorithms after four internships across AI research, machine learning, data analytics and software engineering. That mix is why I care about the unglamorous parts too: validation, tests, logging, deployment and docs.
                 </p>
                 <div className="sp-stats">
-                  <div><b>25+</b><span>projects built</span></div>
+                  <div><b>13</b><span>projects on GitHub</span></div>
                   <div><b>4</b><span>internships</span></div>
                   <div><b>5</b><span>agentic systems</span></div>
                 </div>

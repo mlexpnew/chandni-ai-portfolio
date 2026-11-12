@@ -96,7 +96,7 @@ export const projectGroups: ProjectGroup[] = [
         techStack: ["Python", "CrewAI", "Groq", "FastAPI", "SQLAlchemy", "Docker", "Pytest"],
         liveDemo: "",
         dashboard: "",
-        github: "https://github.com/mlexpnew/ArchitectAI-Autonomous-Tech-Lead",
+        github: "https://github.com/mlexpnew/architectai",
         highlights: ["Planner, reviewer and self-healing agents", "CI verification: 8/8 generated apps boot and pass 112/112 CRUD checks", "Multi-provider LLM engine with offline mock mode", "105 unit tests in CI"],
         outcome: "Generates complete backend projects from a requirements file through one CLI command.",
         cover: "/thumbs/architectai.webp",

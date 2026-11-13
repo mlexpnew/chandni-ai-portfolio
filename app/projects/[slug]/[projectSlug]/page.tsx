@@ -76,12 +76,12 @@ const blueprintBySlug: Record<string, ProjectBlueprint> = {
     challenges: ["Quoting customers without rewording them", "Catching incentivised and fake reviews", "Personal data hidden in review text"],
     learnings: ["n8n + API design", "Compliance-first automation", "Held-out benchmarking"],
   },
-  "data-analyst-agent": {
-    impact: ["Analyst-style report from a raw CSV", "Insights in plain English"],
-    architecture: ["CSV → Profile → Clean → Analyse (LLM-written code) → Charts → Insights → Recommendations"],
-    screenshots: ["Upload screen", "Charts", "Insight report"],
-    challenges: ["Running model-written code safely", "Explaining statistics simply"],
-    learnings: ["Code-generating agents", "Gemini prompting", "Streamlit apps"],
+  clearmis: {
+    impact: ["Exact revenue vs up to 14% raw-export error", "Right driver 12/12 months", "0 unverified numbers in summaries"],
+    architecture: ["Export → map columns → clean + log fixes → KPIs · drivers · unusual days → summary from facts → number check → Excel MIS; questions → validated plan → fixed pandas code"],
+    screenshots: ["Dashboard", "MIS workbook", "Ask a question"],
+    challenges: ["Indian number and date formats", "Explaining change beyond the overall trend", "Stopping invented numbers"],
+    learnings: ["Safe LLM design without code execution", "Robust anomaly detection", "Held-out benchmarking"],
   },
   wealthpilot: {
     impact: ["Explainable rebalancing proposals", "Human approval before any trade", "Full audit trail"],

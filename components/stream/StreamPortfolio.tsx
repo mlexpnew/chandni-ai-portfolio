@@ -21,7 +21,7 @@ const PROFILES: { key: ProfileKey; label: string; hue: string; line: string; tag
     label: "Recruiter",
     hue: "linear-gradient(135deg,#7C5CFF,#3B82F6)",
     line: "Hiring an AI engineer? Start with the shipped work.",
-    tagline: "Agentic AI engineer. 4 internships, 1 current role, 14 projects on GitHub. Available to join now.",
+    tagline: "Agentic AI engineer. 4 internships, 1 current role, 15 projects on GitHub. Available to join now.",
     order: ["agentic-ai", "experience", "generative-ai", "certs", "data-analytics", "writing", "cases"],
   },
   {
@@ -325,7 +325,7 @@ export default function StreamPortfolio({
                   I work on agentic AI at Zetheta Algorithms after four internships across AI research, machine learning, data analytics and software engineering. That mix is why I care about the unglamorous parts too: validation, tests, logging, deployment and docs.
                 </p>
                 <div className="sp-stats">
-                  <div><b>14</b><span>projects on GitHub</span></div>
+                  <div><b>15</b><span>projects on GitHub</span></div>
                   <div><b>4</b><span>internships</span></div>
                   <div><b>5</b><span>agentic systems</span></div>
                 </div>
@@ -386,7 +386,7 @@ const CERT_ART: Record<string, string> = {
   Coursera: "/thumbs/cert-ml-specialization.webp",
   "DeepLearning.AI": "/thumbs/cert-genai-llm.webp",
 };
-const DOC_ART = ["/thumbs/doc-nexbank.webp", "/thumbs/doc-workbridge.webp", "/thumbs/doc-financial-research.webp"];
+const DOC_ART = ["/thumbs/doc-nexbank.webp", "/thumbs/doc-moneytrail.webp", "/thumbs/doc-financial-research.webp"];
 
 function MediaCard({
   href,

@@ -41,6 +41,13 @@ const blueprintBySlug: Record<string, ProjectBlueprint> = {
     challenges: ["Probabilities that mean what they say", "Fairness without using protected attributes", "Uplift without campaign data"],
     learnings: ["Calibration", "Decision-focused ML evaluation", "Model monitoring"],
   },
+  moneytrail: {
+    impact: ["128 alerts vs 35,143 from threshold rules", "46 of the top 50 cases real vs 3", "75% precision on a held-out book vs 2%"],
+    architecture: ["Core-banking export → 8 typology detectors → alerts with evidence → one ranked case per customer → analyst review → draft STR; CTR and cross-border reports"],
+    screenshots: ["Case queue", "Case detail with draft STR", "CTR report"],
+    challenges: ["Telling a busy shop from structuring", "Mules hidden behind ordinary spending", "Name variants without false matches"],
+    learnings: ["AML typologies and PMLA reporting", "Explainable detection", "Held-out benchmarking"],
+  },
   ticktrust: {
     impact: ["0 bad quotes vs 2,870 single API (held-out)", "58/58 feed faults detected", "0 false alerts"],
     architecture: ["8 venues → drop stale → drop frozen → median, drop >1% outliers → quorum (ok / degraded / halt) → quote API + incidents → Slack"],

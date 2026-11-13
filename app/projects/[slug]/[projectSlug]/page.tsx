@@ -62,12 +62,12 @@ const blueprintBySlug: Record<string, ProjectBlueprint> = {
     challenges: ["Dense legal text", "Citation accuracy", "Versioned regulations"],
     learnings: ["LangGraph loops", "Grounding and verification", "Domain retrieval"],
   },
-  "n8n-ugc-generator": {
-    impact: ["Posts for 3 platforms", "No manual copywriting"],
-    architecture: ["Reviews (CSV/API/Sheets) → Gemini Summary → Templates → X / LinkedIn / Instagram"],
-    screenshots: ["n8n Workflow", "Templates", "Generated Posts"],
-    challenges: ["Platform tone and length", "Messy review data"],
-    learnings: ["n8n automation", "Template design"],
+  proofpost: {
+    impact: ["0 problem posts vs 606 naive", "100% of safe reviews used", "About 3,800 reviews per second"],
+    architecture: ["Weekly trigger → Reviews sheet → ProofPost API (screen → redact → verbatim quote → compose → 9 checks) → Approval sheet + Slack → Human approves"],
+    screenshots: ["n8n workflow", "Approval queue", "Streamlit demo"],
+    challenges: ["Quoting customers without rewording them", "Catching incentivised and fake reviews", "Personal data hidden in review text"],
+    learnings: ["n8n + API design", "Compliance-first automation", "Held-out benchmarking"],
   },
   "data-analyst-agent": {
     impact: ["Analyst-style report from a raw CSV", "Insights in plain English"],

@@ -81,7 +81,7 @@ const C: Record<string, ReactNode> = {
       <path {...S} d="M128 58l4 4 8-9" />
     </g>
   ),
-  "n8n-ugc-generator": (
+  proofpost: (
     <g>
       <rect {...S} x="60" y="4" width="40" height="72" rx="7" />
       <path {...S} d="M74 10h12" />

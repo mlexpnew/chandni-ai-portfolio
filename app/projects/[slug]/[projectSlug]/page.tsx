@@ -41,6 +41,13 @@ const blueprintBySlug: Record<string, ProjectBlueprint> = {
     challenges: ["Probabilities that mean what they say", "Fairness without using protected attributes", "Uplift without campaign data"],
     learnings: ["Calibration", "Decision-focused ML evaluation", "Model monitoring"],
   },
+  ticktrust: {
+    impact: ["0 bad quotes vs 2,870 single API (held-out)", "58/58 feed faults detected", "0 false alerts"],
+    architecture: ["8 venues → drop stale → drop frozen → median, drop >1% outliers → quorum (ok / degraded / halt) → quote API + incidents → Slack"],
+    screenshots: ["Dashboard replay", "Incident zoom", "Quote API"],
+    challenges: ["Telling a real crash from a broken feed", "Refusing safely instead of guessing", "Venues without timestamps"],
+    learnings: ["Robust statistics", "Market data engineering", "Held-out fault benchmarking"],
+  },
   architectai: {
     impact: ["8/8 generated apps boot", "112/112 CRUD checks pass in CI", "CI green again after 6 weeks red"],
     architecture: ["Requirements → Planner → Generators → Reviewer → Quality Gate → Self-heal → Repository → CI verification"],

@@ -386,7 +386,7 @@ const CERT_ART: Record<string, string> = {
   Coursera: "/thumbs/cert-ml-specialization.webp",
   "DeepLearning.AI": "/thumbs/cert-genai-llm.webp",
 };
-const DOC_ART = ["/thumbs/doc-nexbank.webp", "/thumbs/doc-moneytrail.webp", "/thumbs/doc-financial-research.webp"];
+const DOC_ART = ["/thumbs/doc-nexbank.webp", "/thumbs/doc-workbridge.webp", "/thumbs/doc-financial-research.webp"];
 
 function MediaCard({
   href,

@@ -31,10 +31,10 @@ const publications = [
     link: "https://github.com/mlexpnew",
   },
   {
-    title: "MoneyTrail: AML monitoring that explains itself",
+    title: "WorkBridge Compliance AI System",
     description:
       "How pattern-based alerts cut 35,143 threshold alerts to 128 while catching every planted laundering case, and what the held-out test revealed.",
-    link: "https://github.com/mlexpnew/moneytrail#readme",
+    link: "https://github.com/mlexpnew/WorkBridge_Compliance_AI_System#readme",
   },
   {
     title: "Autonomous Financial Research Agent",

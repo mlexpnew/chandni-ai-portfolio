@@ -41,7 +41,7 @@ const blueprintBySlug: Record<string, ProjectBlueprint> = {
     challenges: ["Probabilities that mean what they say", "Fairness without using protected attributes", "Uplift without campaign data"],
     learnings: ["Calibration", "Decision-focused ML evaluation", "Model monitoring"],
   },
-  moneytrail: {
+  workbridge: {
     impact: ["128 alerts vs 35,143 from threshold rules", "46 of the top 50 cases real vs 3", "75% precision on a held-out book vs 2%"],
     architecture: ["Core-banking export → 8 typology detectors → alerts with evidence → one ranked case per customer → analyst review → draft STR; CTR and cross-border reports"],
     screenshots: ["Case queue", "Case detail with draft STR", "CTR report"],

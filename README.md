@@ -86,7 +86,7 @@ Production-grade multi-agent AI banking platform featuring:
 * Continuous Learning Pipeline
 * AI Safety Guardrails
 
-### 🛡️ MoneyTrail: AML Transaction Monitoring
+### 🛡️ WorkBridge Compliance AI System
 
 Anti-money-laundering monitoring for Indian NBFCs, banks and payment companies:
 

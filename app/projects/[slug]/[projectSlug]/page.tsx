@@ -83,6 +83,13 @@ const blueprintBySlug: Record<string, ProjectBlueprint> = {
     challenges: ["Indian number and date formats", "Explaining change beyond the overall trend", "Stopping invented numbers"],
     learnings: ["Safe LLM design without code execution", "Robust anomaly detection", "Held-out benchmarking"],
   },
+  clausewise: {
+    impact: ["0 HR-only leaks vs 16 for a typical RAG", "0 outdated answers vs 15", "Honest 'not covered' answers logged as policy gaps"],
+    architecture: ["Policy files → numbered clauses (version, date, audience) → current versions for this role → BM25 + HR glossary (+ embeddings) → answer / restricted / not covered → quoted clause with citation"],
+    screenshots: ["Ask", "Policy gaps", "Policy audit"],
+    challenges: ["Refusing honestly without refusing too much", "Paraphrased and Hinglish questions", "Never leaking restricted documents"],
+    learnings: ["Retrieval evaluation with held-out sets", "Access control in RAG", "Version-aware answers"],
+  },
   wealthpilot: {
     impact: ["Explainable rebalancing proposals", "Human approval before any trade", "Full audit trail"],
     architecture: ["Portfolio → Monitor → Risk → Market → Decision → Trade → Tax → Compliance → Approval → Audit → Dashboard"],

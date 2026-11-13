@@ -97,12 +97,12 @@ const blueprintBySlug: Record<string, ProjectBlueprint> = {
     challenges: ["Refusing honestly without refusing too much", "Paraphrased and Hinglish questions", "Never leaking restricted documents"],
     learnings: ["Retrieval evaluation with held-out sets", "Access control in RAG", "Version-aware answers"],
   },
-  wealthpilot: {
-    impact: ["Explainable rebalancing proposals", "Human approval before any trade", "Full audit trail"],
-    architecture: ["Portfolio → Monitor → Risk → Market → Decision → Trade → Tax → Compliance → Approval → Audit → Dashboard"],
-    screenshots: ["Dashboard", "Agent timeline", "PDF report"],
-    challenges: ["Coordinating 10 agents", "Compliance checks before execution"],
-    learnings: ["Multi-agent design", "Human-in-the-loop systems", "Financial risk basics"],
+  balancebook: {
+    impact: ["50-78% less tax than band rebalancing", "0% of months outside the client's band", "More after-tax wealth for most clients"],
+    architecture: ["Clients + lots → suitability check → new money to underweight → band trigger → cheapest lots by tax and exit load → March gain harvest → plan → adviser approval → audit log"],
+    screenshots: ["Book overview", "Plan review", "Approval log"],
+    challenges: ["Indian capital gains rules and the ₹1.25 lakh exemption", "Partial rebalancing that still restores the band", "A fair after-tax comparison"],
+    learnings: ["Tax-lot optimisation", "Backtesting with held-out markets", "Human-in-the-loop design"],
   },
   "pricing-etl-airflow": {
     impact: ["Daily analytics-ready pricing table", "Fully reproducible stack"],

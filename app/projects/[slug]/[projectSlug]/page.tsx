@@ -27,14 +27,14 @@ const blueprintBySlug: Record<string, ProjectBlueprint> = {
     challenges: ["Layouts the rules have never seen", "Never letting a model guess overwrite a parsed figure", "Honest benchmarking with a held-out layout"],
     learnings: ["GST compliance rules", "Fail-closed design for finance", "Error analysis loops"],
   },
-  hirelens: {
+  fairshortlist: {
     impact: ["Shortlists that cite resume evidence", "Zero score change when names and gender are swapped", "Keyword stuffers filtered out"],
     architecture: ["Resumes → Redact identity → Sections + date ranges → Demonstrated vs listed skills → Rubric → Requirement gates → Shortlist + questions"],
     screenshots: ["Streamlit screening app", "Excel shortlist", "Benchmark vs TF-IDF and keyword ATS"],
     challenges: ["Resume layouts without headings", "Separating used skills from listed skills", "Proving fairness, not asserting it"],
     learnings: ["Responsible AI in hiring", "Counterfactual fairness tests", "Explainable scoring"],
   },
-  retainlens: {
+  churnshield: {
     impact: ["Ranked call list within a fixed budget", "EUR 406,848 realised value vs 111,726 random", "Reasons and talking points per customer"],
     architecture: ["Customers → Validate → Calibrated model → Reason codes → Expected-value planner → Call list; PSI drift monitor alongside"],
     screenshots: ["Streamlit call-plan app", "Model report", "API docs"],

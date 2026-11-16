@@ -118,12 +118,12 @@ const blueprintBySlug: Record<string, ProjectBlueprint> = {
     challenges: ["Seasonality and location effects", "Serving a model simply"],
     learnings: ["Feature engineering", "SQL + ML together", "Deployment"],
   },
-  "trader-sentiment": {
-    impact: ["Strategy ideas tied to sentiment regimes", "Live dashboard anyone can explore"],
-    architecture: ["Fear & Greed Index + Hyperliquid trades → Daily aggregates → Metrics → Segments → Dashboard"],
-    screenshots: ["Live dashboard", "Regime comparison", "Trader segments"],
-    challenges: ["Joining market and trade data", "Separating noise from behaviour"],
-    learnings: ["Behavioural analytics", "Financial metrics", "Dashboard storytelling"],
+  tiltguard: {
+    impact: ["92% of injected episodes caught vs 50%", "One seventh of the alerts of fixed limits", "Plain-language reason on every alert"],
+    architecture: ["Fills → orders → each trader's last 30 days → tilt, size spike, overtrading (firm-wide limits for new accounts) + daily loss, drawdown, concentration → alerts → risk desk"],
+    screenshots: ["Alert list", "One trader", "Fear vs Greed and leaderboard check"],
+    challenges: ["No labels in real trades: testing with injected episodes", "Keeping alert noise readable", "Cold start for new accounts"],
+    learnings: ["Behavioural risk detection", "Bootstrap confidence intervals", "Honest held-out evaluation"],
   },
 };
 

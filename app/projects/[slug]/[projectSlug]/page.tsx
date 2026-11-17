@@ -104,12 +104,12 @@ const blueprintBySlug: Record<string, ProjectBlueprint> = {
     challenges: ["Indian capital gains rules and the ₹1.25 lakh exemption", "Partial rebalancing that still restores the band", "A fair after-tax comparison"],
     learnings: ["Tax-lot optimisation", "Backtesting with held-out markets", "Human-in-the-loop design"],
   },
-  "pricing-etl-airflow": {
-    impact: ["Daily analytics-ready pricing table", "Fully reproducible stack"],
-    architecture: ["Scrape → Exchange rate → Transform → Load PostgreSQL (Airflow DAG, Docker Compose)"],
-    screenshots: ["Airflow DAG", "PostgreSQL table", "Docker Compose"],
-    challenges: ["Idempotent daily loads", "Flaky external sources"],
-    learnings: ["Airflow orchestration", "Data modelling", "Containers"],
+  shelfwatch: {
+    impact: ["3 false alerts vs 7,264", "No delisting after an incomplete crawl", "Prices in rupees with a guarded exchange rate"],
+    architecture: ["Catalogue pages → parse with fallbacks → completeness check + rate guard → mass-change guard → diff by product ID → alerts + PostgreSQL (Airflow DAG)"],
+    screenshots: ["Run log", "Alerts", "Where am I more expensive?"],
+    challenges: ["Scrapers fail quietly", "Currency and sale-price parsing", "Testing without a real competitor: simulated catalogue with faults"],
+    learnings: ["Data quality gates", "Idempotent pipelines", "Honest held-out evaluation"],
   },
   "bangalore-airbnb-pricing": {
     impact: ["Price recommendations for hosts", "Database to app, end to end"],

@@ -23,13 +23,14 @@ export default function ProjectCover({
   hideTitle?: boolean;
 }) {
   const accent = ACCENTS[groupSlug] ?? "#8B7BFF";
+  const name = project.title.split(":")[0];
   return (
-    <div className="sp-pc" style={{ "--pc-accent": accent } as CSSProperties}>
+    <div className={name.length > 22 ? "sp-pc long" : "sp-pc"} style={{ "--pc-accent": accent } as CSSProperties}>
       <div className="sp-pc-top">
         {project.sector && <span className="sp-pc-sector">{project.sector}</span>}
         {badge && <span className="sp-pc-badge">{badge}</span>}
       </div>
-      {!hideTitle && <h4 className="sp-pc-title">{project.title.split(":")[0]}</h4>}
+      {!hideTitle && <h4 className="sp-pc-title">{name}</h4>}
       {!hideTitle && <p className="sp-pc-desc">{project.description}</p>}
       <div className="sp-pc-bottom">
         {project.metric ? (

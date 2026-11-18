@@ -322,3 +322,7 @@ html { background: var(--sp-bg); color-scheme: dark; }
 .sp-card.pc:not(.tall) { aspect-ratio: 4/3; }
 .sp-card.pc.tall .sp-pc-desc { -webkit-line-clamp: 4; }
 .sp-pc { overflow: hidden; }
+.sp-pc-top, .sp-pc-title, .sp-pc-bottom { flex-shrink: 0; }
+.sp-card.pc.tall .sp-pc.long .sp-pc-desc { -webkit-line-clamp: 2; }
+.sp-pc.long .sp-pc-desc { -webkit-line-clamp: 1; }
+.sp-card.pc.tall .sp-pc.long .sp-pc-title { font-size: 20px; }

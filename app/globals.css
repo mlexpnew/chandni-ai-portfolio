@@ -280,3 +280,49 @@ html { background: var(--sp-bg); color-scheme: dark; }
   .sp *, .sp *::before, .sp *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; }
   .sp-intro { display: none; }
 }
+
+/* ================= Project cards: one consistent, text-first system ================= */
+.sp-card.pc { width: clamp(260px, 21vw, 300px); aspect-ratio: 3/2; perspective: none; }
+.sp-card.pc.tall { width: clamp(190px, 15vw, 220px); aspect-ratio: 2/3; }
+.sp-card.pc .sp-card-in { border-radius: 12px; background: #0e0d18; transform: none; box-shadow: 0 8px 22px -14px #000; transition: transform .25s ease, box-shadow .25s ease; }
+.sp-card.pc:hover .sp-card-in, .sp-card.pc:focus-visible .sp-card-in { transform: translateY(-6px); box-shadow: 0 24px 44px -20px #000, 0 0 0 1px rgba(255,255,255,.28); transition: transform .25s ease, box-shadow .25s ease; }
+.sp-card.pc:focus-visible { outline: none; }
+
+.sp-pc { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 16px 18px; box-sizing: border-box; color: #fff; text-align: left;
+  background: radial-gradient(120% 90% at 100% 0%, color-mix(in srgb, var(--pc-accent) 24%, transparent), transparent 62%), linear-gradient(160deg, #17162a, #0d0c17); }
+.sp-pc::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 1px solid rgba(255,255,255,.08); pointer-events: none; }
+.sp-pc-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.sp-pc-sector { font: 600 11px/1.35 var(--font-ui); letter-spacing: .07em; text-transform: uppercase; color: var(--pc-accent); }
+.sp-pc-badge { flex: none; font: 600 10.5px/1 var(--font-ui); padding: 4px 8px; border-radius: 999px; color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.2); }
+.sp-pc-title { margin: 8px 0 0; font: 700 19px/1.22 var(--font-ui); letter-spacing: -.01em; color: #fff; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.sp-pc-bottom { margin-top: auto; display: flex; flex-direction: column; gap: 4px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.08); }
+.sp-pc-value { font: 800 28px/1 var(--font-ui); letter-spacing: -.02em; color: #fff; font-variant-numeric: tabular-nums; }
+.sp-pc-label, .sp-pc-stack { font: 500 12px/1.4 var(--font-ui); color: var(--sp-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+.sp-card.pc.tall .sp-pc { padding: 18px 18px 20px; }
+.sp-card.pc.tall .sp-pc-title { font-size: 22px; -webkit-line-clamp: 3; margin-top: 14px; }
+.sp-card.pc.tall .sp-pc-value { font-size: 34px; }
+.sp-card.pc.tall .sp-pc-label { -webkit-line-clamp: 3; }
+
+/* calmer rank numerals */
+.sp-rank-n { font-size: clamp(104px, 9vw, 140px); -webkit-text-stroke: 2px #4b4766; margin-right: -10px; }
+
+/* modal hero: metric top-right, title stays bottom-left */
+.sp-modal-hero .sp-pc { padding: 28px 32px; }
+.sp-modal-hero .sp-pc-bottom { position: absolute; top: 24px; right: 72px; margin: 0; padding: 0; border: 0; text-align: right; max-width: 45%; }
+.sp-modal-hero .sp-pc-value { font-size: clamp(32px, 4vw, 44px); }
+@media (max-width: 680px) { .sp-modal-hero .sp-pc-bottom { display: none; } .sp-modal-hero .sp-pc { padding: 20px; } }
+
+/* fill the card body and keep metrics on one baseline across a row */
+.sp-pc-desc { margin: 6px 0 0; font: 400 12.5px/1.45 var(--font-ui); color: var(--sp-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.sp-card.pc.tall .sp-pc-desc { font-size: 13px; -webkit-line-clamp: 5; margin-top: 10px; }
+.sp-pc-label, .sp-pc-stack { min-height: 2.8em; }
+.sp-card.pc.tall .sp-pc-label { min-height: 4.2em; }
+.sp-card.pc.tall .sp-pc-sector { min-height: 2.7em; }
+.sp-card.pc:not(.tall) { aspect-ratio: 4/3; }
+.sp-card.pc.tall .sp-pc-desc { -webkit-line-clamp: 4; }
+.sp-pc { overflow: hidden; }
+.sp-pc-top, .sp-pc-title, .sp-pc-bottom { flex-shrink: 0; }
+.sp-card.pc.tall .sp-pc.long .sp-pc-desc { -webkit-line-clamp: 2; }
+.sp-pc.long .sp-pc-desc { -webkit-line-clamp: 1; }
+.sp-card.pc.tall .sp-pc.long .sp-pc-title { font-size: 20px; }

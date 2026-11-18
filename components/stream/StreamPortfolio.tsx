@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
-import type { PointerEvent as RPointerEvent, ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { ReactNode } from "react";
 import AgentSphere from "./AgentSphere";
-import Cover from "./Covers";
+import ProjectCover from "./ProjectCover";
 import SkillChip from "./SkillChip";
 import type { Project, ProjectGroup } from "@/data/projects";
 
@@ -21,7 +21,7 @@ const PROFILES: { key: ProfileKey; label: string; hue: string; line: string; tag
     label: "Recruiter",
     hue: "linear-gradient(135deg,#7C5CFF,#3B82F6)",
     line: "Hiring an AI engineer? Start with the shipped work.",
-    tagline: "Agentic AI engineer. 4 internships, 1 current role, 15 projects on GitHub. Available to join now.",
+    tagline: "Agentic AI engineer. 4 internships, 1 current role, 16 projects on GitHub. Available to join now.",
     order: ["agentic-ai", "experience", "generative-ai", "certs", "data-analytics", "writing", "cases"],
   },
   {
@@ -57,15 +57,6 @@ const SKILL_GROUPS: { title: string; items: string[] }[] = [
   { title: "ML & data", items: ["Pandas", "NumPy", "scikit-learn", "PyTorch", "TensorFlow", "Power BI", "Tableau"] },
   { title: "Delivery & automation", items: ["Docker", "GitHub Actions", "Git", "AWS", "Pytest", "n8n", "Streamlit"] },
 ];
-
-const POSTERS: Record<string, [string, string]> = {
-  "agentic-ai": ["#2A1B6B", "#7C5CFF"],
-  "generative-ai": ["#3B0F3A", "#E0457B"],
-  "machine-learning": ["#0F2E3B", "#22B8CF"],
-  "data-analytics": ["#13301F", "#34D399"],
-  automation: ["#3A2408", "#F59E0B"],
-  "internship-projects": ["#1E2433", "#94A3B8"],
-};
 
 type Selected = { project: Project; group: ProjectGroup } | null;
 
@@ -467,84 +458,27 @@ function Row({ title, sub, href, children }: { title: string; sub?: string; href
   );
 }
 
-function useTilt() {
-  const ref = useRef<HTMLButtonElement>(null);
-  const onMove = useCallback((e: RPointerEvent) => {
-    const el = ref.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    el.style.setProperty("--ry", `${x * 18}deg`);
-    el.style.setProperty("--rx", `${-y * 14}deg`);
-    el.style.setProperty("--gx", `${(x + 0.5) * 100}%`);
-    el.style.setProperty("--gy", `${(y + 0.5) * 100}%`);
-  }, []);
-  const onLeave = useCallback(() => {
-    const el = ref.current;
-    if (!el) return;
-    el.style.setProperty("--ry", "0deg");
-    el.style.setProperty("--rx", "0deg");
-  }, []);
-  return { ref, onPointerMove: onMove, onPointerLeave: onLeave };
-}
-
-function CardInfo({ project }: { project: Project }) {
-  return (
-    <div className="sp-card-more">
-      <div className="sp-info-row">
-        <span className="sp-play-btn" aria-hidden="true">
-          <PlayIcon />
-        </span>
-        <strong className="sp-info-title">{project.title}</strong>
-      </div>
-      <p>{project.description}</p>
-      <div className="sp-card-tags">
-        {project.techStack.slice(0, 3).map((t) => (
-          <span key={t}>{t}</span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function PosterCard({ project, group, onOpen }: { project: Project; group: ProjectGroup; index: number; onOpen: () => void }) {
-  const tilt = useTilt();
-  const colors = POSTERS[group.slug] ?? ["#1b1b2f", "#7C5CFF"];
-  const art = Boolean(project.cover);
   return (
-    <button className={`sp-card${art ? " has-art" : ""}`} onClick={onOpen} {...tilt} aria-label={`Open ${project.title}`}>
+    <button className="sp-card pc" onClick={onOpen} aria-label={`Open ${project.title}`}>
       <div className="sp-card-in">
-        <Cover slug={project.slug} colors={colors} image={project.cover} title={project.title} />
-        <span className="sp-glare" />
-        <span className="sp-play-center" aria-hidden="true"><PlayIcon /></span>
-        <span className={`sp-card-title${art ? " sr-only" : ""}`}>{project.title}</span>
-        <CardInfo project={project} />
+        <ProjectCover project={project} groupSlug={group.slug} />
       </div>
     </button>
   );
 }
 
 function RankCard({ project, group, rank, onOpen }: { project: Project; group: ProjectGroup; rank: number; onOpen: () => void }) {
-  const tilt = useTilt();
-  const image = project.poster ?? project.cover;
-  const art = Boolean(image);
   return (
     <div className="sp-rank">
       <span className="sp-rank-n" aria-hidden="true">{rank}</span>
-      <button className={`sp-card tall${art ? " has-art" : ""}`} onClick={onOpen} {...tilt} aria-label={`Open ${project.title}`}>
+      <button className="sp-card pc tall" onClick={onOpen} aria-label={`Open ${project.title}`}>
         <div className="sp-card-in">
-          <Cover slug={project.slug} colors={POSTERS[group.slug]} image={image} title={project.title} />
-          <span className="sp-glare" />
-          <span className="sp-play-center" aria-hidden="true"><PlayIcon /></span>
-          {(project.slug === "reglens" || project.liveDemo) && (
-            <span className="sp-flags">
-              {project.slug === "reglens" && <span className="sp-flag">In build</span>}
-              {project.liveDemo && <span className="sp-flag live">Live demo</span>}
-            </span>
-          )}
-          <span className={`sp-card-title big${art ? " sr-only" : ""}`}>{project.title}</span>
-          <CardInfo project={project} />
+          <ProjectCover
+            project={project}
+            groupSlug={group.slug}
+            badge={project.slug === "reglens" ? "In build" : project.liveDemo ? "Live demo" : undefined}
+          />
         </div>
       </button>
     </div>
@@ -569,7 +503,7 @@ function Modal({ sel, onClose }: { sel: NonNullable<Selected>; onClose: () => vo
     <div className="sp-modal-bg" onClick={onClose}>
       <div className="sp-modal" role="dialog" aria-modal="true" aria-label={project.title} onClick={(e) => e.stopPropagation()}>
         <div className="sp-modal-hero">
-          <Cover slug={project.slug} colors={POSTERS[group.slug] ?? ["#1b1b2f", "#7C5CFF"]} image={project.cover} title={project.title} />
+          <ProjectCover project={project} groupSlug={group.slug} hideTitle />
           <div className="sp-modal-fade" />
           <h2>{project.title}</h2>
           <button ref={closeRef} className="sp-close" onClick={onClose} aria-label="Close">✕</button>

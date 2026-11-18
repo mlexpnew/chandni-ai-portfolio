@@ -30,6 +30,7 @@ export default function ProjectCover({
         {badge && <span className="sp-pc-badge">{badge}</span>}
       </div>
       {!hideTitle && <h4 className="sp-pc-title">{project.title.split(":")[0]}</h4>}
+      {!hideTitle && <p className="sp-pc-desc">{project.description}</p>}
       <div className="sp-pc-bottom">
         {project.metric ? (
           <>

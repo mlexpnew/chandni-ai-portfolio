@@ -14,6 +14,10 @@ export type Project = {
   cover?: string;
   /** Optional 2:3 poster used on the Top 7 row. */
   poster?: string;
+  /** Short industry label shown on the card, e.g. "AML · Banking". */
+  sector?: string;
+  /** One verified headline number from the repo README. */
+  metric?: { value: string; label: string };
 };
 
 export type ProjectGroup = {
@@ -33,6 +37,8 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "invoiceiq",
         title: "InvoiceIQ",
+        sector: "GST compliance · Finance",
+        metric: { value: "100%", label: "extraction and error detection on 160 invoices" },
         domain: "Flagship builds",
         description: "Checks GST purchase invoices and reconciles them with GSTR-2B before a business claims input tax credit.",
         longDescription: "InvoiceIQ reads supplier invoice PDFs, validates them against GST rules (GSTIN check digit, tax type by state, GST 2.0 slabs, Section 16(4) ITC window, duplicates, arithmetic), reconciles them with the GSTR-2B from the GST portal and produces a review workbook, the ITC at risk, a supplier chase list and a Tally import of clean invoices. Rules handle known layouts; an LLM fallback fills only missing fields and everything is re-validated.",
@@ -47,6 +53,8 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "clausewise",
         title: "Clausewise",
+        sector: "HR policy · RAG",
+        metric: { value: "0", label: "HR-only leaks vs 16 for a typical RAG" },
         domain: "Flagship builds",
         description: "An HR and policy helpdesk that answers employees by quoting the exact clause of the company's own policies.",
         longDescription: "Clausewise splits policy documents into numbered clauses with version, effective date and audience. Answers quote the clause in force on the date asked, with document, section and version. It says 'not covered' and logs a policy gap instead of guessing, says 'restricted' without showing a word of HR-only documents, and audits what changed between versions and where policies contradict each other. BM25 with an HR glossary (PL, EL, chhutti, metro cities, grade ranges), optional embeddings and LLM phrasing behind the same gates.",
@@ -62,6 +70,8 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "architectai",
         title: "ArchitectAI",
+        sector: "Multi-agent · Code generation",
+        metric: { value: "112/112", label: "CRUD checks pass in CI" },
         domain: "Flagship builds",
         description: "An autonomous tech lead that turns plain-English requirements into a working, reviewed backend project.",
         longDescription: "ArchitectAI is a multi-agent pipeline. A planner breaks requirements into tasks, generators build models, schemas, APIs and services, a reviewer critiques the output and a quality gate triggers self-healing fixes. A verification harness generates 8 projects in CI and runs a full create, read, update, delete round-trip on every entity, so working code is measured rather than claimed.",
@@ -77,6 +87,8 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "clearmis",
         title: "ClearMIS",
+        sector: "Finance reporting · LLM",
+        metric: { value: "0.0%", label: "revenue error vs 13.7% in the raw export" },
         domain: "Flagship builds",
         description: "Turns a raw Shopify, Tally or Excel sales export into the monthly MIS, with every number in the summary verified.",
         longDescription: "ClearMIS maps the export (₹, lakh commas, day-first dates), removes duplicates, test and cancelled orders, fixes return signs and logs every correction. It computes monthly KPIs, explains which region, channel, category or product drove the change, flags unusual days and writes a summary whose numbers are checked against the computed facts. Plain-English questions become a validated query plan run by fixed code: nothing an AI writes is ever executed.",
@@ -92,6 +104,8 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "workbridge",
         title: "WorkBridge Compliance AI System",
+        sector: "Anti-money laundering · Banking",
+        metric: { value: "128", label: "alerts vs 35,143 from threshold rules" },
         domain: "Flagship builds",
         description: "Anti-money-laundering monitoring for Indian NBFCs, banks and payment companies: explainable alerts, a ranked case queue and FIU-IND reports drafted.",
         longDescription: "WorkBridge looks for laundering patterns instead of single thresholds: cash structured under ₹50,000, near-limit cash months unusual for the customer, mule accounts passing money through in hours, funds going round in circles, dormant accounts waking up, credits far above declared income, high-risk geographies and watchlist names with spelling variants. Each alert lists its transactions and a plain reason, cases are ranked per customer, and it produces the CTR, cross-border report and a draft STR for the reviewing officer.",
@@ -107,6 +121,8 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "fairshortlist",
         title: "FairShortlist",
+        sector: "Hiring · Responsible AI",
+        metric: { value: "100%", label: "R-precision vs 42% for TF-IDF matching" },
         domain: "Flagship builds",
         description: "Blind, explainable resume screening: a ranked shortlist with evidence, gaps and interview questions.",
         longDescription: "FairShortlist redacts names, contact details, age and gender before scoring, separates skills a candidate actually used at work from skills only listed, measures experience from role dates and scores against a published rubric. Requirements gate the shortlist and a recruiter always makes the final call.",
@@ -121,6 +137,8 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "reglens",
         title: "RegLens",
+        sector: "SEBI compliance · Agentic RAG",
+        metric: { value: "4/4", label: "demo answers verified by the checker agent" },
         domain: "Flagship builds",
         description: "A compliance research agent that answers SEBI regulation questions with citations, and a checker agent that verifies every claim before it is shown.",
         longDescription: "A LangGraph pipeline: Planner splits multi-part questions into up to 3 sub-queries, a retriever pulls SEBI circulars from ChromaDB and reranks them with a cross-encoder, an Analyst drafts a cited answer and a Compliance Checker verifies every number against its source and has an LLM judge each claim. Rejected claims go back for one revision; if nothing is verified it refuses with 'insufficient evidence'. A relevance gate refuses off-topic questions before any LLM call.",
@@ -143,6 +161,8 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "proofpost",
         title: "ProofPost: Reviews to Compliant Posts",
+        sector: "Marketing automation · n8n",
+        metric: { value: "0", label: "problem posts vs 606 with naive reposting" },
         domain: "Agentic & GenAI systems",
         description: "Turns real customer reviews into compliant, on-brand social posts every week. A person approves before anything is published.",
         longDescription: "An n8n workflow reads new reviews every Monday and sends them to a FastAPI service. ProofPost screens out incentivised, mixed and fake reviews, redacts phone numbers, emails, UPI ids and order ids (DPDP Act), quotes customers word for word without health claims (ASCI), writes Instagram, LinkedIn and X posts in the brand voice and runs 9 checks per post. Posts land in an approval sheet and the team gets a Slack summary.",
@@ -158,6 +178,8 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "supportpilot",
         title: "SupportPilot",
+        sector: "Support ops · Data ingestion",
+        metric: { value: "9.4 s", label: "to ingest 1M support tickets" },
         domain: "Agentic & GenAI systems",
         description: "The ingestion layer of a support-ticket triage system: streams, validates, deduplicates and redacts tickets before any model sees them.",
         longDescription: "SupportPilot streams JSONL ticket files through Pydantic v2 validation with a fixed rejection vocabulary, removes duplicate ticket IDs, redacts emails, phone and card numbers, and prints one operational summary per run. Outputs are written atomically, lines are capped at 1 MB, UTF-8 and UTF-16 are handled, and a reject-rate guard stops a bad file. An OrderHub client fetches order status with a 3 s deadline, 3 retries and typed errors.",
@@ -173,6 +195,8 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "balancebook",
         title: "BalanceBook: Tax-aware Rebalancing",
+        sector: "Wealth tech · Tax",
+        metric: { value: "78%", label: "less tax than band rebalancing (held-out)" },
         domain: "Agentic & GenAI systems",
         description: "Keeps every client inside their agreed allocation while paying a fraction of the tax, with plans the adviser approves before any trade.",
         longDescription: "BalanceBook directs new SIP money to underweight assets, trades only when a client leaves their band and only back to halfway inside, sells the lots that cost least in tax and exit load, and books tax-free long-term gains up to the ₹1.25 lakh exemption every March. Indian capital gains rules live in one file, targets are checked against the client's risk profile, and every plan goes to the adviser for approval with an audit log.",
@@ -189,13 +213,15 @@ export const projectGroups: ProjectGroup[] = [
   },
   {
     slug: "data-analytics",
-    domain: "ML & data systems",
+    domain: "Data engineering & analytics",
     color: "text-cyan-400",
     projects: [
       {
         slug: "churnshield",
         title: "ChurnShield",
-        domain: "ML & data systems",
+        sector: "Banking · Machine learning",
+        metric: { value: "0.864", label: "ROC-AUC on held-out customers" },
+        domain: "Data engineering & analytics",
         description: "Churn early warning for banks: who is about to leave, why, and who to call first with a fixed budget.",
         longDescription: "ChurnShield scores 10,000 real bank customers with a calibrated gradient-boosting model, explains each score with reason codes and talking points, and plans retention calls by expected value within a budget. Gender is excluded as an input, fairness is reported by gender and market, and a PSI drift monitor flags when to retrain.",
         techStack: ["Python", "scikit-learn", "pandas", "FastAPI", "Streamlit", "Docker"],
@@ -209,7 +235,9 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "ticktrust",
         title: "TickTrust",
-        domain: "ML & data systems",
+        sector: "Crypto payments · Market data",
+        metric: { value: "0", label: "bad quotes vs 2,870 from a single API" },
+        domain: "Data engineering & analytics",
         description: "Crypto reference prices a payment gateway can safely quote on, with alerts the moment a price feed goes wrong.",
         longDescription: "TickTrust polls 8 public venues (Coinbase, Kraken, Bitstamp, Gemini, CoinGecko, Binance, CoinDCX, WazirX), drops stale, frozen and outlier feeds, takes the median of what is left and refuses to quote when too few venues agree. It raises incidents for stale, frozen, outage, outlier, quorum loss and stablecoin depeg with Slack alerts, and issues payment quotes with an audit trail through a FastAPI service.",
         techStack: ["Python", "FastAPI", "Streamlit", "NumPy", "Docker", "GitHub Actions"],
@@ -224,7 +252,9 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "shelfwatch",
         title: "ShelfWatch: Competitor Price Monitor",
-        domain: "ML & data systems",
+        sector: "E-commerce · Airflow pipeline",
+        metric: { value: "3", label: "false alerts vs 7,264 for the original ETL" },
+        domain: "Data engineering & analytics",
         description: "Crawls competitor catalogues daily, converts to rupees and checks every crawl before trusting it, so only real price and stock changes reach the team.",
         longDescription: "Built for Indian online sellers, D2C brands and brands watching reseller prices. ShelfWatch reads prices with currency and sale-price awareness, never delists products after an incomplete crawl, needs a second source before accepting an odd exchange rate, and quarantines crawls where most prices move by the same ratio. Runs as an Airflow DAG on PostgreSQL with a REST API and a desk screen; benchmarked against the original ETL on a simulated catalogue with known faults.",
         techStack: ["Python", "Apache Airflow", "PostgreSQL", "BeautifulSoup", "FastAPI", "Streamlit", "Docker"],
@@ -239,7 +269,9 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "tiltguard",
         title: "TiltGuard: Trader Risk Desk",
-        domain: "ML & data systems",
+        sector: "Trading risk · Analytics",
+        metric: { value: "92%", label: "risk episodes caught vs 50% for fixed limits" },
+        domain: "Data engineering & analytics",
         description: "Catches traders who are tilting, oversizing or churning, and breaches of firm limits, judging every trader against their own normal.",
         longDescription: "Built for crypto prop firms and copy-trading platforms. TiltGuard learns each trader's last 30 days from exchange fills and flags revenge trading after a big loss, orders far above their own large orders, costly overtrading days, daily loss and drawdown breaches, and months whose profit came from a few lucky trades. Tested on real Hyperliquid fills with injected episodes; the original Fear vs Greed question is answered with account-level bootstrap confidence intervals.",
         techStack: ["Python", "pandas", "FastAPI", "Streamlit", "Docker", "GitHub Actions"],
@@ -254,7 +286,8 @@ export const projectGroups: ProjectGroup[] = [
       {
         slug: "bangalore-airbnb-pricing",
         title: "Bangalore Airbnb Dynamic Pricing",
-        domain: "ML & data systems",
+        sector: "Travel · Pricing model",
+        domain: "Data engineering & analytics",
         description: "A database-driven dynamic pricing system for Bangalore Airbnb listings, from PostgreSQL to a deployed Streamlit app.",
         longDescription: "Listing data lives in PostgreSQL, a machine learning model recommends prices from listing features, and a Streamlit app serves the recommendations.",
         techStack: ["Python", "PostgreSQL", "scikit-learn", "Streamlit"],
@@ -264,6 +297,21 @@ export const projectGroups: ProjectGroup[] = [
         highlights: ["End-to-end: database, model and app", "Feature engineering on listing data", "Deployed with Streamlit"],
         outcome: "Price recommendations for hosts, built end to end.",
         cover: "/thumbs/airbnb-pricing-model.webp",
+      },
+      {
+        slug: "financial-health-analyzer",
+        title: "Company Financial Health Analyzer",
+        sector: "Equity research · Analytics",
+        metric: { value: "10", label: "financial ratios plus headline sentiment, one dashboard" },
+        domain: "Data engineering & analytics",
+        description: "A Streamlit dashboard that turns a company's financials into ratios, trends, news sentiment and a plain-language health summary.",
+        longDescription: "Upload a financials CSV or pull market data with yFinance. The app computes profitability, liquidity, leverage, efficiency and return ratios, scores news headlines with NLTK VADER, plots trends with Plotly and writes a short summary of what is improving, worsening or stable.",
+        techStack: ["Python", "pandas", "Streamlit", "Plotly", "yFinance", "NLTK VADER"],
+        liveDemo: "",
+        dashboard: "",
+        github: "https://github.com/mlexpnew/Analyst-Company-Financial-Health-Analyzer",
+        highlights: ["Gross, operating and net margin, current and quick ratio, debt-to-equity, asset and inventory turnover, ROE, ROA", "Headline sentiment with rolling averages", "CSV upload with automatic separator detection", "Unit-tested ratio calculations"],
+        outcome: "Built for analysts and investors who want a quick read on a company's financial health.",
       },
     ],
   },

@@ -118,6 +118,13 @@ const blueprintBySlug: Record<string, ProjectBlueprint> = {
     challenges: ["Seasonality and location effects", "Serving a model simply"],
     learnings: ["Feature engineering", "SQL + ML together", "Deployment"],
   },
+  "financial-health-analyzer": {
+    impact: ["10 financial ratios computed from one CSV", "Headline sentiment next to the numbers", "Plain-language summary of trends"],
+    architecture: ["CSV upload or yFinance → ratio engine (profitability, liquidity, leverage, efficiency, returns) → VADER headline sentiment → trend summary → Streamlit pages"],
+    screenshots: ["Overview", "Ratios", "Sentiment"],
+    challenges: ["Messy CSV columns and separators", "Turning ratios into a readable verdict", "Combining text and numbers"],
+    learnings: ["Financial statement analysis", "Sentiment scoring", "Multipage Streamlit apps"],
+  },
   tiltguard: {
     impact: ["92% of injected episodes caught vs 50%", "One seventh of the alerts of fixed limits", "Plain-language reason on every alert"],
     architecture: ["Fills → orders → each trader's last 30 days → tilt, size spike, overtrading (firm-wide limits for new accounts) + daily loss, drawdown, concentration → alerts → risk desk"],

@@ -230,7 +230,7 @@ export const projectGroups: ProjectGroup[] = [
         techStack: ["Python", "Apache Airflow", "PostgreSQL", "BeautifulSoup", "FastAPI", "Streamlit", "Docker"],
         liveDemo: "",
         dashboard: "",
-        github: "https://github.com/mlexpnew/product-pricing-airflow-etl",
+        github: "https://github.com/mlexpnew/shelfwatch",
         highlights: ["3 false alerts vs 7,264 for the original ETL (held-out)", "29 silent wrong prices vs 10,739", "99% of real changes alerted within 2 days vs 78%", "Live crawl of the real site in CI"],
         outcome: "Built for D2C brands, marketplace sellers and pricing teams.",
         cover: "/thumbs/shelfwatch.webp",

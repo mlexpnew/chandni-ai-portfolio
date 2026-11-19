@@ -511,7 +511,7 @@ function Modal({ sel, onClose }: { sel: NonNullable<Selected>; onClose: () => vo
         <div className="sp-modal-body">
           <div>
             <div className="sp-meta">
-              <b>{group.domain}</b>
+              <b>{project.sector ?? group.domain}</b>
               {project.techStack.slice(0, 2).map((t) => (
                 <span key={t} className="sp-chip">{t}</span>
               ))}

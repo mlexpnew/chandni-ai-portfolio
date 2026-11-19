@@ -113,7 +113,7 @@ export const projectGroups: ProjectGroup[] = [
         liveDemo: "",
         dashboard: "",
         github: "https://github.com/mlexpnew/WorkBridge_Compliance_AI_System",
-        highlights: ["128 alerts vs 35,143 from threshold rules, every planted case caught for the right reason", "46 of the top 50 cases real vs 3", "Held-out book: 44/47 caught, 75% precision vs 2%", "0 false watchlist matches"],
+        highlights: ["128 alerts vs 35,143 from threshold rules, every planted case caught for the right reason", "46 of the top 50 cases real vs 3", "Held-out book: 44 of 47 caught, 75% precision vs 2.4% for rules", "0 false watchlist matches"],
         outcome: "Built for AML teams at NBFCs, cooperative banks and payment companies.",
         cover: "/thumbs/workbridge.webp",
         poster: "/posters/workbridge.webp",
